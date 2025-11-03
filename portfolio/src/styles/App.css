@@ -1,0 +1,171 @@
+.App {
+  min-height: 100vh;
+  position: relative;
+}
+
+main {
+  padding-top: 80px;
+}
+
+section {
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+section.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* About section should be visible immediately */
+#about {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-title {
+  font-size: 2.75rem;
+  font-weight: 800;
+  margin-bottom: 3rem;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  background: var(--gradient);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient 5s ease infinite;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 5px;
+  background: var(--gradient);
+  border-radius: 3px;
+  animation: gradient 5s ease infinite;
+}
+
+.section-title::before {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 5px;
+  background: var(--accent-color);
+  border-radius: 3px;
+  opacity: 0.6;
+}
+
+@media (max-width: 1024px) {
+  section {
+    padding: 80px 20px;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  section {
+    padding: 60px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger animation delays for cards */
+.project-card:nth-child(1),
+.skill-category:nth-child(1),
+.experience-item:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.project-card:nth-child(2),
+.skill-category:nth-child(2),
+.experience-item:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.project-card:nth-child(3),
+.skill-category:nth-child(3),
+.experience-item:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.project-card:nth-child(4),
+.skill-category:nth-child(4),
+.experience-item:nth-child(4) {
+  transition-delay: 0.4s;
+}
+
+.project-card,
+.skill-category,
+.experience-item,
+.language-item,
+.education-card,
+.contact-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.project-card.animate-in,
+.skill-category.animate-in,
+.experience-item.animate-in,
+.language-item.animate-in,
+.education-card.animate-in,
+.contact-item.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
