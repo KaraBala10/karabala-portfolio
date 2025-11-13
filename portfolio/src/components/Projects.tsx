@@ -172,7 +172,7 @@ const Projects = () => {
                   rel="noopener noreferrer"
                   className="project-link"
                 >
-                  <FaGithub /> GitHub
+                  <FaGithub /> <span>GitHub</span>
                 </a>
               )}
               {project.liveUrl && (
@@ -182,7 +182,7 @@ const Projects = () => {
                   rel="noopener noreferrer"
                   className="project-link"
                 >
-                  <FaExternalLinkAlt /> Live Demo
+                  <FaExternalLinkAlt /> <span>Live Demo</span>
                 </a>
               )}
             </div>
