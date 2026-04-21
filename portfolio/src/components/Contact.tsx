@@ -5,22 +5,32 @@ import {
   FaFacebook,
   FaTelegram,
   FaRocket,
+  FaEnvelope,
 } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io5";
 import AnimatedSection from "./AnimatedSection";
 
 const Contact = () => {
   return (
-    <AnimatedSection 
-      id="contact" 
-      className="py-16 lg:py-24 relative text-formal-900 dark:text-white transition-colors duration-500 flex flex-col justify-center min-h-[90vh]" 
+    <AnimatedSection
+      id="contact"
+      className="py-16 lg:py-24 relative text-formal-900 dark:text-white transition-colors duration-500 flex flex-col justify-center min-h-[90vh]"
       delay={0.1}
     >
       {/* Background Blurs behind the content */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute top-[15%] left-1/2 -translate-x-1/2 w-[80%] max-w-3xl h-[250px] bg-blue-400/30 dark:bg-blue-600/30 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '4s' }}></div>
-        <div className="absolute top-[45%] left-1/2 -translate-x-1/2 w-[90%] max-w-4xl h-[250px] bg-emerald-400/30 dark:bg-emerald-600/30 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }}></div>
-        <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2 w-[70%] max-w-2xl h-[200px] bg-purple-400/30 dark:bg-purple-600/30 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: '6s', animationDelay: '2s' }}></div>
+        <div
+          className="absolute top-[15%] left-1/2 -translate-x-1/2 w-[80%] max-w-3xl h-[250px] bg-blue-400/30 dark:bg-blue-600/30 rounded-full blur-[120px] animate-pulse"
+          style={{ animationDuration: "4s" }}
+        ></div>
+        <div
+          className="absolute top-[45%] left-1/2 -translate-x-1/2 w-[90%] max-w-4xl h-[250px] bg-emerald-400/30 dark:bg-emerald-600/30 rounded-full blur-[120px] animate-pulse"
+          style={{ animationDuration: "5s", animationDelay: "1s" }}
+        ></div>
+        <div
+          className="absolute bottom-[10%] left-1/2 -translate-x-1/2 w-[70%] max-w-2xl h-[200px] bg-purple-400/30 dark:bg-purple-600/30 rounded-full blur-[100px] animate-pulse"
+          style={{ animationDuration: "6s", animationDelay: "2s" }}
+        ></div>
       </div>
 
       <div className="container mx-auto px-6 lg:px-12 max-w-5xl text-center relative z-10 flex flex-col flex-1">
@@ -41,7 +51,8 @@ const Contact = () => {
           </h2>
 
           <p className="text-lg md:text-xl text-formal-600 dark:text-formal-400 leading-relaxed max-w-2xl mx-auto font-medium">
-            Got a massive automation idea? Need a scalable backend system? Or maybe a complete web application?
+            Got a massive automation idea? Need a scalable backend system? Or
+            maybe a complete web application?
             <span className="text-formal-900 dark:text-formal-100 font-bold block mt-2">
               I'm here to turn your vision into reality.
             </span>
@@ -72,7 +83,7 @@ const Contact = () => {
             <span className="text-xs md:text-sm uppercase tracking-widest font-bold text-formal-500 dark:text-formal-400 mb-2">
               Based In
             </span>
-            <span className="text-xl md:text-2xl font-bold text-formal-900 dark:text-white transition-colors">
+            <span className="text-base md:text-lg font-bold text-formal-900 dark:text-white transition-colors break-all">
               Damascus, Syria
             </span>
           </div>
@@ -81,9 +92,19 @@ const Contact = () => {
         {/* Social Links */}
         <div className="mb-auto bg-white dark:bg-formal-900 border border-formal-200 dark:border-formal-800 rounded-3xl p-8 max-w-4xl mx-auto w-full shadow-sm hover:shadow-lg transition-shadow duration-300">
           <h3 className="text-sm md:text-base font-bold uppercase tracking-widest text-formal-600 dark:text-formal-300 mb-8 flex items-center justify-center gap-3">
-            <FaRocket className="text-lg text-formal-400 dark:text-formal-500" /> Connect With Me
+            <FaRocket className="text-lg text-formal-400 dark:text-formal-500" />{" "}
+            Connect With Me
           </h3>
           <div className="flex flex-wrap justify-center gap-4">
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=mohammad.karabala@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 px-6 py-3.5 bg-formal-50 dark:bg-formal-800 border border-formal-200 dark:border-formal-700 rounded-xl hover:bg-[#ea4335] dark:hover:bg-[#ea4335] hover:border-[#ea4335] dark:hover:border-[#ea4335] hover:-translate-y-1 transition-all duration-300 text-formal-700 dark:text-formal-200 hover:text-white dark:hover:text-white group shadow-sm hover:shadow-md"
+            >
+              <FaEnvelope className="text-2xl text-[#ea4335] group-hover:text-white transition-colors" />
+              <span className="font-bold text-sm md:text-base">Email</span>
+            </a>
             <a
               href="https://wa.me/963949257963"
               target="_blank"
@@ -126,7 +147,8 @@ const Contact = () => {
         {/* Footer */}
         <footer className="mt-16 pt-6 border-t border-formal-200 dark:border-formal-800 flex flex-col md:flex-row justify-between items-center gap-4 relative z-20">
           <p className="text-xs md:text-sm font-medium text-formal-500 dark:text-formal-400">
-            &copy; {new Date().getFullYear()} Mohammad KaraBala. Built with Passion.
+            &copy; {new Date().getFullYear()} Mohammad KaraBala. Built with
+            Passion.
           </p>
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>

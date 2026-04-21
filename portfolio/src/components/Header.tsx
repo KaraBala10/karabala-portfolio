@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FaGithub, FaFacebook, FaTelegram } from "react-icons/fa";
+import { FaGithub, FaFacebook, FaTelegram, FaEnvelope } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io5";
 import { Moon, Sun, Menu, X } from "lucide-react";
 
@@ -61,6 +61,7 @@ const Header = ({ activeSection, scrollToSection, theme, toggleTheme }: HeaderPr
         {/* Desktop Socials & Theme Toggle */}
         <div className="hidden md:flex space-x-4 text-formal-600 dark:text-formal-400 items-center">
           <a href="https://github.com/KaraBala10/" target="_blank" rel="noopener noreferrer" className="hover:text-formal-900 dark:hover:text-formal-50 transition-colors text-lg" aria-label="GitHub"><FaGithub /></a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mohammad.karabala@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:text-formal-900 dark:hover:text-formal-50 transition-colors text-lg" aria-label="Email"><FaEnvelope /></a>
           <a href="https://www.facebook.com/mohammad.karabala.5" target="_blank" rel="noopener noreferrer" className="hover:text-formal-900 dark:hover:text-formal-50 transition-colors text-lg" aria-label="Facebook"><FaFacebook /></a>
           <a href="https://t.me/KaraBala10" target="_blank" rel="noopener noreferrer" className="hover:text-formal-900 dark:hover:text-formal-50 transition-colors text-lg" aria-label="Telegram"><FaTelegram /></a>
           <a href="https://wa.me/963949257963" target="_blank" rel="noopener noreferrer" className="hover:text-formal-900 dark:hover:text-formal-50 transition-colors text-lg" aria-label="WhatsApp"><IoLogoWhatsapp /></a>
@@ -113,11 +114,12 @@ const Header = ({ activeSection, scrollToSection, theme, toggleTheme }: HeaderPr
                 {item.label}
               </button>
             ))}
-            <div className="flex space-x-6 text-formal-600 dark:text-formal-400 pt-4 border-t border-formal-100 dark:border-formal-800">
-              <a href="https://github.com/KaraBala10/" target="_blank" rel="noopener noreferrer"><FaGithub className="text-xl hover:text-formal-900 dark:hover:text-formal-50" /></a>
-              <a href="https://www.facebook.com/mohammad.karabala.5" target="_blank" rel="noopener noreferrer"><FaFacebook className="text-xl hover:text-formal-900 dark:hover:text-formal-50" /></a>
-              <a href="https://t.me/KaraBala10" target="_blank" rel="noopener noreferrer"><FaTelegram className="text-xl hover:text-formal-900 dark:hover:text-formal-50" /></a>
-              <a href="https://wa.me/963949257963" target="_blank" rel="noopener noreferrer"><IoLogoWhatsapp className="text-xl hover:text-formal-900 dark:hover:text-formal-50" /></a>
+            <div className="flex space-x-6 text-formal-600 dark:text-formal-400 pt-4 border-t border-formal-100 dark:border-formal-800 justify-center">
+              <a href="https://github.com/KaraBala10/" target="_blank" rel="noopener noreferrer"><FaGithub className="text-xl hover:text-formal-900 dark:hover:text-formal-50 transition-colors" /></a>
+              <a href="mailto:mohammad.karabala@gmail.com" aria-label="Email"><FaEnvelope className="text-xl hover:text-formal-900 dark:hover:text-formal-50 transition-colors" /></a>
+              <a href="https://www.facebook.com/mohammad.karabala.5" target="_blank" rel="noopener noreferrer"><FaFacebook className="text-xl hover:text-formal-900 dark:hover:text-formal-50 transition-colors" /></a>
+              <a href="https://t.me/KaraBala10" target="_blank" rel="noopener noreferrer"><FaTelegram className="text-xl hover:text-formal-900 dark:hover:text-formal-50 transition-colors" /></a>
+              <a href="https://wa.me/963949257963" target="_blank" rel="noopener noreferrer"><IoLogoWhatsapp className="text-xl hover:text-formal-900 dark:hover:text-formal-50 transition-colors" /></a>
             </div>
           </div>
         </div>
