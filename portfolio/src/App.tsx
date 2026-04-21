@@ -6,10 +6,12 @@ import Education from "./components/Education";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
-import "./styles/App.css";
+import BackgroundDecorations from "./components/BackgroundDecorations";
+import { useTheme } from "./hooks/useTheme";
 
 function App() {
   const [activeSection, setActiveSection] = useState("about");
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,36 +40,11 @@ function App() {
       }
     };
 
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: "0px 0px -100px 0px",
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("animate-in");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    // Observe all sections and cards
-    const sections = document.querySelectorAll("section:not(#about)");
-    const cards = document.querySelectorAll(
-      ".project-card, .skill-category, .experience-item, .language-item, .education-card, .contact-item"
-    );
-
-    sections.forEach((section) => observer.observe(section));
-    cards.forEach((card) => observer.observe(card));
-
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Check initial position
+    handleScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      observer.disconnect();
     };
   }, []);
 
@@ -76,8 +53,7 @@ function App() {
     if (element) {
       const headerOffset = 80;
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition =
-        elementPosition + window.pageYOffset - headerOffset;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
       window.scrollTo({
         top: offsetPosition,
@@ -88,9 +64,10 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Header activeSection={activeSection} scrollToSection={scrollToSection} />
-      <main>
+    <div className={`min-h-screen font-sans relative bg-formal-50 text-formal-900 selection:bg-formal-900 selection:text-white dark:bg-formal-900 dark:text-formal-50 dark:selection:bg-formal-50 dark:selection:text-formal-900 transition-colors duration-500`}>
+      <BackgroundDecorations />
+      <Header activeSection={activeSection} scrollToSection={scrollToSection} theme={theme} toggleTheme={toggleTheme} />
+      <main className="pt-20 relative z-10">
         <About />
         <Experience />
         <Education />

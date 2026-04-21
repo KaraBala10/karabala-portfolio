@@ -1,4 +1,4 @@
-import "./Skills.css";
+import AnimatedSection from "./AnimatedSection";
 
 interface SkillCategory {
   name: string;
@@ -7,80 +7,60 @@ interface SkillCategory {
 
 const skillCategories: SkillCategory[] = [
   {
+    name: "Automation & Scraping",
+    skills: ["n8n", "Scrapy", "Playwright", "Selenium", "ADB", "Redroid"],
+  },
+  {
     name: "Programming Languages",
-    skills: ["Python", "JavaScript", "TypeScript", "SQL", "XML"],
+    skills: ["Python", "JavaScript", "TypeScript", "Bash", "SQL"],
   },
   {
     name: "Frameworks & Libraries",
-    skills: ["React", "Django", "Node.js"],
+    skills: ["Django", "Flask", "React"],
   },
   {
-    name: "Tools & Technologies",
-    skills: [
-      "Git",
-      "Docker",
-      "Linux & Linux Servers",
-      "Windows & Windows Server",
-      "RESTful API",
-      "ADB Commands",
-      "Object-Oriented Programming",
-    ],
-  },
-  {
-    name: "Databases",
-    skills: ["MySQL", "MongoDB", "PostgreSQL"],
+    name: "AI & LLM",
+    skills: ["LangChain", "LangGraph", "Claude", "GPT", "Gemma", "Ollama"],
   },
   {
     name: "DevOps & Infrastructure",
-    skills: ["Server Management", "CI/CD", "Ansible", "Monitoring"],
+    skills: ["Docker", "Linux", "Ansible", "CI/CD", "Server Management"],
   },
   {
-    name: "AI & ML",
-    skills: ["LLMs", "LangChain", "RAG", "Ollama"],
+    name: "Databases & Tools",
+    skills: ["MySQL", "MongoDB", "PostgreSQL", "Git", "RESTful API"],
   },
-  {
-    name: "Office & Communication",
-    skills: ["Microsoft Office", "Google Workspace", "Microsoft Teams"],
-  },
-];
-
-const languages = [
-  { name: "Arabic", level: "Mother tongue" },
-  { name: "English", level: "C1 - Advanced" },
 ];
 
 const Skills = () => {
   return (
-    <section id="skills" className="skills-section">
-      <h2 className="section-title">Skills</h2>
+    <AnimatedSection id="skills" className="py-20 lg:py-32 transition-colors duration-500" delay={0.1}>
+      <div className="container mx-auto px-6 lg:px-12 max-w-6xl">
+        <div className="mb-16 text-center">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-formal-900 dark:text-formal-50 tracking-tight">Skills & Expertise</h2>
+          <div className="mt-4 w-16 h-1 bg-formal-900 dark:bg-formal-500 mx-auto rounded-full"></div>
+        </div>
 
-      <div className="skills-grid">
-        {skillCategories.map((category, index) => (
-          <div key={index} className="skill-category">
-            <h3 className="skill-category-name">{category.name}</h3>
-            <div className="skill-tags">
-              {category.skills.map((skill, skillIndex) => (
-                <span key={skillIndex} className="skill-tag">
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="languages-section">
-        <h3 className="languages-title">Language Skills</h3>
-        <div className="languages-grid">
-          {languages.map((lang, index) => (
-            <div key={index} className="language-item">
-              <span className="language-name">{lang.name}</span>
-              <span className="language-level">{lang.level}</span>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {skillCategories.map((category, index) => (
+            <div key={index} className="p-8 rounded-2xl bg-formal-50 dark:bg-formal-800 border border-formal-100 dark:border-formal-700 hover:border-formal-300 dark:hover:border-formal-500 transition-colors shadow-sm">
+              <h3 className="text-lg font-bold text-formal-900 dark:text-formal-100 mb-6 uppercase tracking-wide">{category.name}</h3>
+              <div className="flex flex-wrap gap-2">
+                {category.skills.map((skill, skillIndex) => (
+                  <span 
+                    key={skillIndex} 
+                    className="px-3 py-1.5 bg-white dark:bg-formal-900 border border-formal-200 dark:border-formal-600 text-formal-700 dark:text-formal-300 text-sm font-medium rounded-lg hover:border-formal-400 dark:hover:border-formal-400 hover:text-formal-900 dark:hover:text-formal-50 transition-colors cursor-default"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </div>
           ))}
         </div>
+
       </div>
-    </section>
+    </AnimatedSection>
   );
 };
 
