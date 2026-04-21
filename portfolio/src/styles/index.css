@@ -26,6 +26,7 @@ body {
   color: var(--color-formal-900);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 .dark body {

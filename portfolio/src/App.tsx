@@ -53,7 +53,8 @@ function App() {
     if (element) {
       const headerOffset = 80;
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      const offsetPosition =
+        elementPosition + window.pageYOffset - headerOffset;
 
       window.scrollTo({
         top: offsetPosition,
@@ -64,9 +65,16 @@ function App() {
   };
 
   return (
-    <div className={`min-h-screen font-sans relative bg-formal-50 text-formal-900 selection:bg-formal-900 selection:text-white dark:bg-formal-900 dark:text-formal-50 dark:selection:bg-formal-50 dark:selection:text-formal-900 transition-colors duration-500`}>
+    <div
+      className={`overflow-x-hidden min-h-screen font-sans relative bg-formal-50 text-formal-900 selection:bg-formal-900 selection:text-white dark:bg-formal-900 dark:text-formal-50 dark:selection:bg-formal-50 dark:selection:text-formal-900 transition-colors duration-500`}
+    >
       <BackgroundDecorations />
-      <Header activeSection={activeSection} scrollToSection={scrollToSection} theme={theme} toggleTheme={toggleTheme} />
+      <Header
+        activeSection={activeSection}
+        scrollToSection={scrollToSection}
+        theme={theme}
+        toggleTheme={toggleTheme}
+      />
       <main className="pt-20 relative z-10">
         <About />
         <Experience />
