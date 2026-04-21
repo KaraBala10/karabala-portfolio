@@ -116,7 +116,7 @@ const Header = ({ activeSection, scrollToSection, theme, toggleTheme }: HeaderPr
             ))}
             <div className="flex space-x-6 text-formal-600 dark:text-formal-400 pt-4 border-t border-formal-100 dark:border-formal-800 justify-center">
               <a href="https://github.com/KaraBala10/" target="_blank" rel="noopener noreferrer"><FaGithub className="text-xl hover:text-formal-900 dark:hover:text-formal-50 transition-colors" /></a>
-              <a href="mailto:mohammad.karabala@gmail.com" aria-label="Email"><FaEnvelope className="text-xl hover:text-formal-900 dark:hover:text-formal-50 transition-colors" /></a>
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mohammad.karabala@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Email"><FaEnvelope className="text-xl hover:text-formal-900 dark:hover:text-formal-50 transition-colors" /></a>
               <a href="https://www.facebook.com/mohammad.karabala.5" target="_blank" rel="noopener noreferrer"><FaFacebook className="text-xl hover:text-formal-900 dark:hover:text-formal-50 transition-colors" /></a>
               <a href="https://t.me/KaraBala10" target="_blank" rel="noopener noreferrer"><FaTelegram className="text-xl hover:text-formal-900 dark:hover:text-formal-50 transition-colors" /></a>
               <a href="https://wa.me/963949257963" target="_blank" rel="noopener noreferrer"><IoLogoWhatsapp className="text-xl hover:text-formal-900 dark:hover:text-formal-50 transition-colors" /></a>
