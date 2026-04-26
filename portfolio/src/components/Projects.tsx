@@ -14,99 +14,72 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "Social Media Intelligence",
-    description: "LangGraph pipeline that discovers & analyzes profiles across 8+ platforms using Bright Data MCP.",
+    title: "AI Content Automation Pipeline",
+    description: "Social Media Automation System",
     features: [
-      "AI-driven profile analysis and data extraction",
-      "Multi-platform scraping via Bright Data",
-      "Integration with LangGraph for reasoning pipelines",
+      "Designed and implemented end-to-end automation workflows for generating and publishing content across multiple social media platforms",
+      "Built AI-driven pipelines for automated content (text/video) creation, formatting, and scheduled distribution",
+      "Integrated multi-platform publishing (Telegram, social media) with zero manual intervention",
+      "Significantly reduced manual workload and improved publishing consistency"
     ],
-    technologies: ["Python", "LangGraph", "Bright Data MCP"],
+    technologies: ["n8n", "Python", "AI APIs", "Webhooks"],
   },
   {
-    title: "n8n Automation Suite",
-    description: "Self-hosted multi-step pipelines for data collection, transformation, API integration, and notifications.",
+    title: "Full-Stack List Manager",
+    description: "Internal Data Management System",
     features: [
-      "Production workflows for scraping & lead gen",
-      "Custom nodes and webhook triggers",
-      "Monitoring and automated alerts",
+      "Developed a full-stack web application to manage and track structured data workflows",
+      "Designed relational database architecture with optimized queries and data integrity constraints",
+      "Implemented secure file handling, tracking, and automated cleanup processes",
+      "Deployed using Docker with automated server configuration (Ansible)"
     ],
-    technologies: ["n8n", "JavaScript", "Webhooks"],
+    technologies: ["Django", "React", "Docker", "PostgreSQL"],
   },
   {
-    title: "Redroid + ADB Farm",
-    description: "Dockerized Android emulation farm for mobile automation at scale with Python integration.",
+    title: "CV Mailer",
+    description: "Automated Job Application System",
     features: [
-      "Headless Android containers on cloud servers",
-      "Parallel instance execution and task scheduling",
-      "Controlled via ADB for app interaction",
+      "Built an automation tool to send personalized job application emails with CV attachments at scale",
+      "Implemented dynamic email generation, scheduling, and delivery tracking",
+      "Reduced repetitive manual work and improved outreach efficiency"
     ],
-    technologies: ["Docker", "Android", "ADB", "Python"],
+    technologies: ["Python", "SMTP", "Automation"],
+    liveUrl: "https://cv-mailer-nine.vercel.app/",
   },
   {
-    title: "Syria Location Database",
-    description: "A Python project extracting Syria's administrative divisions from text into MySQL and CSV.",
+    title: "SP Today API",
+    description: "Real-Time Data Scraping Service",
     features: [
-      "Duplicate prevention and data cleaning",
-      "Arabic-English translation support",
-      "SQL view for complex data queries",
+      "Built a backend service to collect and serve real-time currency and gold prices",
+      "Designed reliable scraping pipelines with structured API responses",
+      "Optimized performance for fast and continuous data delivery"
     ],
-    technologies: ["Python", "MySQL"],
-    githubUrl: "https://github.com/KaraBala10/syria-location-database",
+    technologies: ["Python", "FastAPI", "Web Scraping", "n8n"],
+    githubUrl: "https://github.com/KaraBala10/sp-today-api",
+    liveUrl: "https://t.me/its_sptodayBOT",
   },
   {
-    title: "RAG AI Chat (Gemma2)",
-    description: "Arabic-supported AI chat application with retrieval-augmented generation.",
+    title: "FMEE Results Bot",
+    description: "Telegram Automation Bot for university exam results",
     features: [
-      "Custom dataset integration for contextual answers",
-      "Vector database implementation for retrieval",
-      "Dockerized container for scalable deployment",
+      "Developed a Telegram bot that automates retrieval and display of university exam results",
+      "Built robust scraping logic with specialization detection and structured output",
+      "Delivered real-time results (marks, averages, missing subjects) in Arabic"
     ],
-    technologies: ["Python", "LangChain", "Gemma", "Docker"],
-  },
-  {
-    title: "Speech Correction API",
-    description: "Django REST API designed to improve pronunciation in children by detecting and correcting mistakes.",
-    features: [
-      "Audio preprocessing and noise reduction",
-      "Speech recognition and analysis models",
-      "Fast API response for real-time usage",
-    ],
-    technologies: ["Python", "Django REST", "AI/ML"],
-    githubUrl: "https://github.com/KaraBala10/speech-correction-api",
-  },
-  {
-    title: "List Manager Platform",
-    description: "A full-stack List Manager web application to optimize internal data management workflows.",
-    features: [
-      "Secure file upload and automated cleanup",
-      "Clean relational database with foreign keys",
-      "Docker deployment and Ansible server management",
-    ],
-    technologies: ["Django", "React", "MySQL", "Ansible"],
-    period: "04/2024 - Current",
-  },
-  {
-    title: "DU FMEE Results Bot",
-    description: "\"alamaty\" is a Telegram bot for FMEE results at Damascus University to view marks and averages.",
-    features: [
-      "Web scraping from official university site",
-      "Specialization detection",
-      "Missing subjects tracking in Arabic",
-    ],
-    technologies: ["Python", "Telegram Bot API"],
+    technologies: ["Python", "Web Scraping", "Telegram API"],
     githubUrl: "https://github.com/KaraBala10/du-fmee-results-bot",
+    liveUrl: "https://t.me/Hamak_Marks_BOT",
   },
   {
-    title: "Video Text Generator API",
-    description: "A RESTful API built with Flask that allows you to add text overlays to videos and replace audio tracks.",
+    title: "syria-location-database",
+    description: "Syria Administrative Data Processing that extracts and stores data from text files into MySQL and CSV.",
     features: [
-      "Dynamic text sizing and overlay positioning",
-      "Audio track replacement and looping",
-      "High-quality MP4 output generation",
+      "Prevents duplicates during data extraction",
+      "Supports Arabic-English translation",
+      "Includes an SQL view for easy queries"
     ],
-    technologies: ["Python", "Flask", "FFmpeg"],
-    githubUrl: "https://github.com/KaraBala10/video-text-generator-api",
+    technologies: ["Python", "MySQL", "CSV"],
+    githubUrl: "https://github.com/KaraBala10/syria-location-database",
   },
 ];
 

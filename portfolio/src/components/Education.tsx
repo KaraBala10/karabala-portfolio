@@ -18,7 +18,7 @@ const education: EducationItem[] = [
     address: "Airport Road, Damascus, Syria",
   },
   {
-    degree: "Web Development Training",
+    degree: "Web Development",
     institution: "Enmaa Charity Association",
     location: "Rif Dimshq, Syria",
     period: "05/2022 - 04/2023",

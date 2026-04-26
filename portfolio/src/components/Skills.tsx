@@ -8,7 +8,7 @@ interface SkillCategory {
 const skillCategories: SkillCategory[] = [
   {
     name: "Automation & Scraping",
-    skills: ["n8n", "Scrapy", "Playwright", "Selenium", "ADB", "Redroid"],
+    skills: ["n8n", "Web Scraping", "Scrapy", "Playwright", "Selenium", "ADB", "Redroid"],
   },
   {
     name: "Programming Languages",

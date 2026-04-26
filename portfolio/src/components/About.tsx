@@ -33,12 +33,12 @@ const About = () => {
             </div>
 
             <p className="text-lg text-formal-600 dark:text-formal-300 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              Automation Engineer & Full-Stack Developer specializing in Python
-              backend systems, n8n automation, and scalable web applications.
-              Passionate about building self-hosted multi-step pipelines, data
-              collection workflows, and Android emulation infrastructure.
-              Focused on clean architecture, AI integration, and robust
-              deployments using Docker and Linux.
+              Full-Stack & Automation Engineer with strong expertise in Python
+              backend systems and modern frontend development using React and
+              Next.js. Specialized in building end-to-end applications and
+              automation workflows using n8n, including AI-driven pipelines and
+              multi-platform integrations. Experienced in deploying scalable
+              systems using Docker and Linux environments.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto lg:mx-0 pt-4">
