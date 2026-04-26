@@ -117,8 +117,8 @@ const About = () => {
           </div>
 
           {/* Image Section */}
-          <div className="flex-1 order-1 lg:order-2 w-full max-w-md lg:max-w-none mx-auto relative">
-            <div className="relative z-10 p-2 rounded-2xl bg-white dark:bg-formal-800 shadow-xl shadow-formal-900/5 dark:shadow-black/20 ring-1 ring-formal-900/5 dark:ring-formal-50/5 aspect-[4/5] sm:aspect-auto overflow-hidden">
+          <div className="flex-shrink-0 order-1 lg:order-2 w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[380px] xl:max-w-[400px] mx-auto relative">
+            <div className="relative z-10 p-2 rounded-2xl bg-white dark:bg-formal-800 shadow-xl shadow-formal-900/5 dark:shadow-black/20 ring-1 ring-formal-900/5 dark:ring-formal-50/5 aspect-[4/5] overflow-hidden">
               <img
                 src={developerImage}
                 alt="Mohammad KaraBala"
