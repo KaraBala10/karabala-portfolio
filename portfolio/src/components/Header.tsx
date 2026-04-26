@@ -10,7 +10,12 @@ interface HeaderProps {
   toggleTheme: () => void;
 }
 
-const Header = ({ activeSection, scrollToSection, theme, toggleTheme }: HeaderProps) => {
+const Header = ({
+  activeSection,
+  scrollToSection,
+  theme,
+  toggleTheme,
+}: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -32,9 +37,11 @@ const Header = ({ activeSection, scrollToSection, theme, toggleTheme }: HeaderPr
   ];
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/90 dark:bg-formal-900/90 backdrop-blur-md shadow-sm py-4" : "bg-transparent py-6"}`}>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/90 dark:bg-formal-900/90 backdrop-blur-md shadow-sm py-4" : "bg-transparent py-6"}`}
+    >
       <div className="container mx-auto px-6 lg:px-12 flex justify-between items-center">
-        <div 
+        <div
           className="text-2xl font-bold tracking-tight cursor-pointer text-formal-900 dark:text-formal-50 transition-colors"
           onClick={() => scrollToSection("about")}
         >
@@ -47,8 +54,8 @@ const Header = ({ activeSection, scrollToSection, theme, toggleTheme }: HeaderPr
             <button
               key={item.id}
               className={`cursor-pointer text-sm font-medium tracking-wide transition-colors duration-200 uppercase ${
-                activeSection === item.id 
-                  ? "text-formal-900 dark:text-formal-50 border-b-2 border-formal-900 dark:border-formal-50" 
+                activeSection === item.id
+                  ? "text-formal-900 dark:text-formal-50 border-b-2 border-formal-900 dark:border-formal-50"
                   : "text-formal-500 dark:text-formal-400 hover:text-formal-900 dark:hover:text-formal-50 border-b-2 border-transparent"
               }`}
               onClick={() => scrollToSection(item.id)}
@@ -60,14 +67,54 @@ const Header = ({ activeSection, scrollToSection, theme, toggleTheme }: HeaderPr
 
         {/* Desktop Socials & Theme Toggle */}
         <div className="hidden md:flex space-x-4 text-formal-600 dark:text-formal-400 items-center">
-          <a href="https://github.com/KaraBala10/" target="_blank" rel="noopener noreferrer" className="hover:text-formal-900 dark:hover:text-formal-50 transition-colors text-lg" aria-label="GitHub"><FaGithub /></a>
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mohammad.karabala@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:text-formal-900 dark:hover:text-formal-50 transition-colors text-lg" aria-label="Email"><FaEnvelope /></a>
-          <a href="https://www.facebook.com/mohammad.karabala.5" target="_blank" rel="noopener noreferrer" className="hover:text-formal-900 dark:hover:text-formal-50 transition-colors text-lg" aria-label="Facebook"><FaFacebook /></a>
-          <a href="https://t.me/KaraBala10" target="_blank" rel="noopener noreferrer" className="hover:text-formal-900 dark:hover:text-formal-50 transition-colors text-lg" aria-label="Telegram"><FaTelegram /></a>
-          <a href="https://wa.me/963949257963" target="_blank" rel="noopener noreferrer" className="hover:text-formal-900 dark:hover:text-formal-50 transition-colors text-lg" aria-label="WhatsApp"><IoLogoWhatsapp /></a>
-          
+          <a
+            href="https://github.com/KaraBala10/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-formal-900 dark:hover:text-formal-50 transition-colors text-lg"
+            aria-label="GitHub"
+          >
+            <FaGithub />
+          </a>
+          <a
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=mohammad.karabala@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-formal-900 dark:hover:text-formal-50 transition-colors text-lg"
+            aria-label="Email"
+          >
+            <FaEnvelope />
+          </a>
+          <a
+            href="https://www.facebook.com/mohammadkarabala10"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-formal-900 dark:hover:text-formal-50 transition-colors text-lg"
+            aria-label="Facebook"
+          >
+            <FaFacebook />
+          </a>
+          <a
+            href="https://t.me/KaraBala10"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-formal-900 dark:hover:text-formal-50 transition-colors text-lg"
+            aria-label="Telegram"
+          >
+            <FaTelegram />
+          </a>
+          <a
+            href="https://wa.me/963949257963"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-formal-900 dark:hover:text-formal-50 transition-colors text-lg"
+            aria-label="WhatsApp"
+          >
+            <IoLogoWhatsapp />
+          </a>
+
           <div className="w-px h-6 bg-formal-200 dark:bg-formal-700 mx-2"></div>
-          
+
           <button
             onClick={toggleTheme}
             className="cursor-pointer p-2 rounded-full hover:bg-formal-100 dark:hover:bg-formal-800 transition-colors"
@@ -104,7 +151,9 @@ const Header = ({ activeSection, scrollToSection, theme, toggleTheme }: HeaderPr
               <button
                 key={item.id}
                 className={`text-left text-sm font-medium uppercase tracking-wide py-2 ${
-                  activeSection === item.id ? "text-formal-900 dark:text-formal-50" : "text-formal-600 dark:text-formal-400"
+                  activeSection === item.id
+                    ? "text-formal-900 dark:text-formal-50"
+                    : "text-formal-600 dark:text-formal-400"
                 }`}
                 onClick={() => {
                   scrollToSection(item.id);
@@ -115,11 +164,42 @@ const Header = ({ activeSection, scrollToSection, theme, toggleTheme }: HeaderPr
               </button>
             ))}
             <div className="flex space-x-6 text-formal-600 dark:text-formal-400 pt-4 border-t border-formal-100 dark:border-formal-800 justify-center">
-              <a href="https://github.com/KaraBala10/" target="_blank" rel="noopener noreferrer"><FaGithub className="text-xl hover:text-formal-900 dark:hover:text-formal-50 transition-colors" /></a>
-              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mohammad.karabala@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Email"><FaEnvelope className="text-xl hover:text-formal-900 dark:hover:text-formal-50 transition-colors" /></a>
-              <a href="https://www.facebook.com/mohammad.karabala.5" target="_blank" rel="noopener noreferrer"><FaFacebook className="text-xl hover:text-formal-900 dark:hover:text-formal-50 transition-colors" /></a>
-              <a href="https://t.me/KaraBala10" target="_blank" rel="noopener noreferrer"><FaTelegram className="text-xl hover:text-formal-900 dark:hover:text-formal-50 transition-colors" /></a>
-              <a href="https://wa.me/963949257963" target="_blank" rel="noopener noreferrer"><IoLogoWhatsapp className="text-xl hover:text-formal-900 dark:hover:text-formal-50 transition-colors" /></a>
+              <a
+                href="https://github.com/KaraBala10/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaGithub className="text-xl hover:text-formal-900 dark:hover:text-formal-50 transition-colors" />
+              </a>
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=mohammad.karabala@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Email"
+              >
+                <FaEnvelope className="text-xl hover:text-formal-900 dark:hover:text-formal-50 transition-colors" />
+              </a>
+              <a
+                href="https://www.facebook.com/mohammadkarabala10"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaFacebook className="text-xl hover:text-formal-900 dark:hover:text-formal-50 transition-colors" />
+              </a>
+              <a
+                href="https://t.me/KaraBala10"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaTelegram className="text-xl hover:text-formal-900 dark:hover:text-formal-50 transition-colors" />
+              </a>
+              <a
+                href="https://wa.me/963949257963"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <IoLogoWhatsapp className="text-xl hover:text-formal-900 dark:hover:text-formal-50 transition-colors" />
+              </a>
             </div>
           </div>
         </div>
