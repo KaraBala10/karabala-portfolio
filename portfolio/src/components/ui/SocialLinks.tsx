@@ -1,4 +1,4 @@
-import { FaGithub, FaFacebook, FaTelegram, FaEnvelope } from "react-icons/fa";
+import { FaGithub, FaFacebook, FaTelegram, FaEnvelope, FaLinkedinIn } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io5";
 import { site, type SocialItem } from "../../data/site";
 
@@ -8,6 +8,7 @@ const brandIcons = {
   facebook: FaFacebook,
   telegram: FaTelegram,
   whatsapp: IoLogoWhatsapp,
+  linkedin: FaLinkedinIn,
 } as const;
 
 const brandColors: Record<SocialItem["brand"], string> = {
@@ -16,6 +17,7 @@ const brandColors: Record<SocialItem["brand"], string> = {
   facebook: "text-[#1877F2]",
   telegram: "text-[#0088cc]",
   whatsapp: "text-[#25D366]",
+  linkedin: "text-[#0A66C2]",
 };
 
 interface SocialLinksProps {

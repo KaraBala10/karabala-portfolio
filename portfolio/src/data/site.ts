@@ -53,6 +53,12 @@ export const site = {
       href: "https://wa.me/963949257963",
       brand: "whatsapp" as const,
     },
+    {
+      id: "linkedin",
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/karabala",
+      brand: "linkedin" as const,
+    },
   ],
 } as const;
 
