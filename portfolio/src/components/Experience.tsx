@@ -1,9 +1,12 @@
 import { Calendar, MapPin } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import { experiences } from "../data/experience";
 import Section from "./ui/Section";
 import TiltCard from "./ui/TiltCard";
 
 const Experience = () => {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <Section
       id="experience"
@@ -23,15 +26,27 @@ const Experience = () => {
 
             return (
               <li key={`${exp.company}-${exp.period}`} className="relative">
-                <span
+                <motion.span
                   className="absolute left-4 top-3 z-10 flex h-3.5 w-3.5 -translate-x-1/2 rounded-full border-2 border-emerald-500 bg-white dark:bg-formal-900 shadow-[0_0_8px_rgba(16,185,129,0.5)] md:left-1/2"
+                  initial={prefersReducedMotion ? false : { scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ type: "spring", stiffness: 300, damping: 18 }}
                   aria-hidden
                 />
 
-                <div
+                <motion.div
                   className={`ml-10 md:ml-0 md:w-[calc(50%-2rem)] ${
                     isLeft ? "md:mr-auto md:pr-4" : "md:ml-auto md:pl-4"
                   }`}
+                  initial={
+                    prefersReducedMotion
+                      ? false
+                      : { opacity: 0, x: isLeft ? -40 : 40 }
+                  }
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.25 }}
+                  transition={{ duration: 0.55, ease: "easeOut" }}
                 >
                   <TiltCard
                     as="article"
@@ -76,7 +91,7 @@ const Experience = () => {
                       ))}
                     </ul>
                   </TiltCard>
-                </div>
+                </motion.div>
               </li>
             );
           })}

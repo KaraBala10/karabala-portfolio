@@ -1,8 +1,19 @@
-import { Mail, Phone, MapPin, Briefcase, Download, ArrowRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Briefcase,
+  Download,
+  ArrowRight,
+  ChevronDown,
+} from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import developerImage from "../assets/karabala.jpeg";
 import { site } from "../data/site";
 import AnimatedSection from "./AnimatedSection";
 import TiltCard from "./ui/TiltCard";
+import { StaggerContainer, RevealItem } from "./ui/Reveal";
 
 interface AboutProps {
   scrollToSection: (sectionId: string) => void;
@@ -31,7 +42,49 @@ const metaItems = [
   },
 ];
 
+/** Cycles through the roles with a slide/fade swap; width stays stable. */
+const RotatingRoles = () => {
+  const prefersReducedMotion = useReducedMotion();
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    const id = setInterval(
+      () => setIndex((i) => (i + 1) % site.roles.length),
+      2600
+    );
+    return () => clearInterval(id);
+  }, [prefersReducedMotion]);
+
+  return (
+    <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-base md:text-lg font-semibold tracking-wide text-formal-800 dark:text-formal-100">
+      <span className="w-2 h-2 rounded-full bg-accent motion-safe:animate-pulse" aria-hidden />
+      {/* All roles share one grid cell so the chip keeps the widest width. */}
+      <span className="inline-grid text-left">
+        {site.roles.map((role, i) => (
+          <motion.span
+            key={role}
+            className="col-start-1 row-start-1"
+            initial={false}
+            animate={
+              prefersReducedMotion
+                ? { opacity: i === 0 ? 1 : 0 }
+                : { opacity: i === index ? 1 : 0, y: i === index ? 0 : 10 }
+            }
+            transition={{ duration: 0.45, ease: "easeOut" }}
+            aria-hidden={i !== index}
+          >
+            {role}
+          </motion.span>
+        ))}
+      </span>
+    </span>
+  );
+};
+
 const About = ({ scrollToSection }: AboutProps) => {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <AnimatedSection
       id="about"
@@ -39,8 +92,8 @@ const About = ({ scrollToSection }: AboutProps) => {
     >
       <div className="container mx-auto w-full px-6 lg:px-12 relative z-[2] flex-1 flex items-center">
         <div className="w-full flex flex-col lg:flex-row lg:items-center items-center gap-8 lg:gap-14 xl:gap-16">
-          <div className="flex-1 order-2 lg:order-1 text-center lg:text-left space-y-5 lg:space-y-6 w-full min-w-0">
-            <div>
+          <StaggerContainer className="flex-1 order-2 lg:order-1 text-center lg:text-left space-y-5 lg:space-y-6 w-full min-w-0">
+            <RevealItem>
               <span className="inline-flex items-center gap-2.5 text-sm font-bold uppercase tracking-[0.2em] text-accent mb-3">
                 <span className="w-8 h-px bg-accent/60" aria-hidden />
                 {site.eyebrow}
@@ -48,28 +101,19 @@ const About = ({ scrollToSection }: AboutProps) => {
               <h1 className="font-display text-3xl md:text-5xl lg:text-6xl font-extrabold text-gradient tracking-tight leading-tight pb-1">
                 {site.name}
               </h1>
-            </div>
+            </RevealItem>
 
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
-              {site.roles.map((role) => (
-                <span
-                  key={role}
-                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-card text-formal-800 dark:text-formal-100 text-sm font-semibold tracking-wide"
-                >
-                  <span
-                    className="w-1.5 h-1.5 rounded-full bg-accent"
-                    aria-hidden
-                  />
-                  {role}
-                </span>
-              ))}
-            </div>
+            <RevealItem className="flex flex-wrap items-center justify-center lg:justify-start">
+              <RotatingRoles />
+            </RevealItem>
 
-            <p className="text-base md:text-lg text-formal-600 dark:text-formal-300 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              {site.bio}
-            </p>
+            <RevealItem>
+              <p className="text-base md:text-lg text-formal-600 dark:text-formal-300 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                {site.bio}
+              </p>
+            </RevealItem>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mx-auto lg:mx-0">
+            <RevealItem className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mx-auto lg:mx-0">
               {metaItems.map((item) => {
                 const Icon = item.icon;
                 return (
@@ -92,9 +136,9 @@ const About = ({ scrollToSection }: AboutProps) => {
                   </TiltCard>
                 );
               })}
-            </div>
+            </RevealItem>
 
-            <div className="relative z-[2] flex flex-wrap justify-center lg:justify-start gap-3 pt-1">
+            <RevealItem className="relative z-[2] flex flex-wrap justify-center lg:justify-start gap-3 pt-1">
               <a
                 href={site.cvPath}
                 download
@@ -119,10 +163,19 @@ const About = ({ scrollToSection }: AboutProps) => {
                   aria-hidden
                 />
               </button>
-            </div>
-          </div>
+            </RevealItem>
+          </StaggerContainer>
 
-          <div className="flex-shrink-0 order-1 lg:order-2 w-full max-w-[200px] sm:max-w-[240px] lg:max-w-[300px] xl:max-w-[340px] mx-auto relative isolate">
+          <motion.div
+            className="flex-shrink-0 order-1 lg:order-2 w-full max-w-[200px] sm:max-w-[240px] lg:max-w-[300px] xl:max-w-[340px] mx-auto relative isolate"
+            initial={
+              prefersReducedMotion
+                ? false
+                : { opacity: 0, scale: 0.92, filter: "blur(10px)" }
+            }
+            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
+          >
             <div
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-emerald-300/30 via-sky-200/25 to-formal-100/30 dark:from-emerald-500/15 dark:via-sky-500/10 dark:to-indigo-500/15 rounded-full blur-3xl -z-10 transition-colors duration-500"
               aria-hidden
@@ -143,8 +196,25 @@ const About = ({ scrollToSection }: AboutProps) => {
                 </span>
               </div>
             </TiltCard>
-          </div>
+          </motion.div>
         </div>
+      </div>
+
+      {/* Scroll hint */}
+      <div className="relative z-[2] flex justify-center pb-2 mt-6">
+        <motion.button
+          type="button"
+          onClick={() => scrollToSection("experience")}
+          aria-label="Scroll to experience"
+          className="flex flex-col items-center gap-1.5 text-formal-400 dark:text-formal-500 hover:text-accent dark:hover:text-accent transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-formal-900 dark:focus-visible:ring-formal-50 rounded-md p-1"
+          animate={prefersReducedMotion ? undefined : { y: [0, 7, 0] }}
+          transition={{ repeat: Infinity, duration: 1.9, ease: "easeInOut" }}
+        >
+          <span className="text-[10px] uppercase tracking-[0.3em] font-bold">
+            Scroll
+          </span>
+          <ChevronDown size={18} aria-hidden />
+        </motion.button>
       </div>
     </AnimatedSection>
   );

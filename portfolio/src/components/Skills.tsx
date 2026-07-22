@@ -2,6 +2,7 @@ import { skillCategories } from "../data/skills";
 import Chip from "./ui/Chip";
 import Section from "./ui/Section";
 import TiltCard from "./ui/TiltCard";
+import { StaggerContainer, RevealItem } from "./ui/Reveal";
 
 const Skills = () => {
   return (
@@ -12,12 +13,15 @@ const Skills = () => {
       delay={0.1}
       maxWidth="max-w-6xl"
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <StaggerContainer
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        amount={0.1}
+      >
         {skillCategories.map((category) => (
+          <RevealItem key={category.name} className="h-full">
           <TiltCard
             as="article"
-            key={category.name}
-            className="p-8 rounded-2xl glass-card"
+            className="p-8 rounded-2xl glass-card h-full"
           >
             <h3 className="font-display text-lg font-bold text-formal-900 dark:text-formal-100 mb-6 uppercase tracking-wide flex items-center gap-2.5">
               <span
@@ -34,8 +38,9 @@ const Skills = () => {
               ))}
             </div>
           </TiltCard>
+          </RevealItem>
         ))}
-      </div>
+      </StaggerContainer>
     </Section>
   );
 };

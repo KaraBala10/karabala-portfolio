@@ -2,6 +2,7 @@ import { Calendar, MapPin, GraduationCap } from "lucide-react";
 import { education } from "../data/education";
 import Section from "./ui/Section";
 import TiltCard from "./ui/TiltCard";
+import { StaggerContainer, RevealItem } from "./ui/Reveal";
 
 const Education = () => {
   return (
@@ -12,12 +13,18 @@ const Education = () => {
       delay={0.1}
       maxWidth="max-w-5xl"
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <StaggerContainer
+        className="grid grid-cols-1 md:grid-cols-2 gap-8"
+        amount={0.1}
+      >
         {education.map((edu) => (
+          <RevealItem
+            key={`${edu.institution}-${edu.degree}`}
+            className="h-full"
+          >
           <TiltCard
             as="article"
-            key={`${edu.institution}-${edu.degree}`}
-            className="glass-card rounded-2xl p-8 lg:p-10"
+            className="glass-card rounded-2xl p-8 lg:p-10 h-full"
           >
             <div className="w-14 h-14 bg-emerald-50 dark:bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-700 dark:text-emerald-300 mb-6">
               <GraduationCap size={28} aria-hidden />
@@ -48,8 +55,9 @@ const Education = () => {
               </div>
             </div>
           </TiltCard>
+          </RevealItem>
         ))}
-      </div>
+      </StaggerContainer>
     </Section>
   );
 };

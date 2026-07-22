@@ -3,6 +3,7 @@ import { projects } from "../data/projects";
 import Chip from "./ui/Chip";
 import Section from "./ui/Section";
 import TiltCard from "./ui/TiltCard";
+import { StaggerContainer, RevealItem } from "./ui/Reveal";
 
 const Projects = () => {
   return (
@@ -13,12 +14,15 @@ const Projects = () => {
       delay={0.1}
       maxWidth="max-w-7xl"
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <StaggerContainer
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        amount={0.1}
+      >
         {projects.map((project) => (
+          <RevealItem key={project.title} className="h-full">
           <TiltCard
             as="article"
-            key={project.title}
-            className="flex flex-col glass-card rounded-2xl p-8"
+            className="flex flex-col glass-card rounded-2xl p-8 h-full"
           >
             <h3 className="font-display text-xl font-bold text-formal-900 dark:text-formal-50 leading-snug mb-4">
               {project.title}
@@ -80,8 +84,9 @@ const Projects = () => {
               ) : null}
             </div>
           </TiltCard>
+          </RevealItem>
         ))}
-      </div>
+      </StaggerContainer>
     </Section>
   );
 };
