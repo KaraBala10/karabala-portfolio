@@ -45,13 +45,7 @@ const Header = ({
   };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/90 dark:bg-formal-900/90 backdrop-blur-md shadow-sm py-4"
-          : "bg-transparent py-6"
-      }`}
-    >
+    <header className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-4 lg:px-6 pt-3">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-formal-900 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white dark:focus:bg-formal-50 dark:focus:text-formal-900"
@@ -59,28 +53,34 @@ const Header = ({
         Skip to main content
       </a>
 
-      <div className="container mx-auto px-6 lg:px-12 flex justify-between items-center">
+      {/* Floating glass pill */}
+      <div
+        className={`mx-auto max-w-6xl flex items-center justify-between rounded-2xl px-4 lg:px-6 transition-all duration-300 ${
+          scrolled ? "glass-bar py-2.5" : "border border-transparent py-3.5"
+        }`}
+      >
         <button
           type="button"
-          className="text-2xl font-bold tracking-tight cursor-pointer text-formal-900 dark:text-formal-50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-formal-900 dark:focus-visible:ring-formal-50 rounded-sm"
+          className="font-display text-xl font-bold tracking-tight cursor-pointer text-formal-900 dark:text-formal-50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-formal-900 dark:focus-visible:ring-formal-50 rounded-md"
           onClick={() => handleNavClick("about")}
           aria-label={`${site.name} — go to about`}
         >
           {site.shortName}
+          <span className="text-accent">.</span>
         </button>
 
         <nav
-          className="hidden md:flex space-x-8 items-center"
+          className="hidden md:flex items-center gap-1"
           aria-label="Primary"
         >
           {site.navItems.map((item) => (
             <button
               key={item.id}
               type="button"
-              className={`cursor-pointer text-sm font-medium tracking-wide transition-colors duration-200 uppercase focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-formal-900 dark:focus-visible:ring-formal-50 rounded-sm ${
+              className={`cursor-pointer text-[13px] font-semibold tracking-wide uppercase px-3.5 py-1.5 rounded-full transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-formal-900 dark:focus-visible:ring-formal-50 ${
                 activeSection === item.id
-                  ? "text-formal-900 dark:text-formal-50 border-b-2 border-formal-900 dark:border-formal-50"
-                  : "text-formal-500 dark:text-formal-400 hover:text-formal-900 dark:hover:text-formal-50 border-b-2 border-transparent"
+                  ? "bg-formal-900 text-white dark:bg-formal-50 dark:text-formal-900 shadow-sm"
+                  : "text-formal-500 dark:text-formal-400 hover:text-formal-900 dark:hover:text-formal-50 hover:bg-formal-100/70 dark:hover:bg-formal-800/70"
               }`}
               onClick={() => handleNavClick(item.id)}
               aria-current={activeSection === item.id ? "true" : undefined}
@@ -90,9 +90,9 @@ const Header = ({
           ))}
         </nav>
 
-        <div className="hidden md:flex space-x-4 text-formal-600 dark:text-formal-400 items-center">
+        <div className="hidden md:flex items-center gap-3 text-formal-600 dark:text-formal-400">
           <SocialLinks />
-          <div className="w-px h-6 bg-formal-200 dark:bg-formal-700 mx-2" />
+          <div className="w-px h-6 bg-formal-200 dark:bg-formal-700" />
           <button
             type="button"
             onClick={toggleTheme}
@@ -106,7 +106,7 @@ const Header = ({
           </button>
         </div>
 
-        <div className="flex items-center space-x-4 md:hidden">
+        <div className="flex items-center gap-2 md:hidden">
           <button
             type="button"
             onClick={toggleTheme}
@@ -120,7 +120,7 @@ const Header = ({
           </button>
           <button
             type="button"
-            className="cursor-pointer text-formal-900 dark:text-formal-50 p-1 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-formal-900 dark:focus-visible:ring-formal-50"
+            className="cursor-pointer text-formal-900 dark:text-formal-50 p-1.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-formal-900 dark:focus-visible:ring-formal-50"
             onClick={() => setIsMenuOpen((open) => !open)}
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMenuOpen}
@@ -134,17 +134,17 @@ const Header = ({
       {isMenuOpen ? (
         <div
           id="mobile-nav"
-          className="md:hidden bg-white dark:bg-formal-900 border-t border-formal-100 dark:border-formal-800 shadow-lg absolute w-full left-0 py-4 mt-4"
+          className="md:hidden glass-bar rounded-2xl mx-auto max-w-6xl mt-2 py-4"
         >
-          <nav className="flex flex-col space-y-2 px-6" aria-label="Mobile">
+          <nav className="flex flex-col space-y-1 px-5" aria-label="Mobile">
             {site.navItems.map((item) => (
               <button
                 key={item.id}
                 type="button"
-                className={`text-left text-sm font-medium uppercase tracking-wide py-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-formal-900 dark:focus-visible:ring-formal-50 rounded-sm ${
+                className={`text-left text-sm font-semibold uppercase tracking-wide py-2.5 px-3 rounded-lg cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-formal-900 dark:focus-visible:ring-formal-50 ${
                   activeSection === item.id
-                    ? "text-formal-900 dark:text-formal-50"
-                    : "text-formal-600 dark:text-formal-400"
+                    ? "bg-formal-900 text-white dark:bg-formal-50 dark:text-formal-900"
+                    : "text-formal-600 dark:text-formal-400 hover:bg-formal-100/70 dark:hover:bg-formal-800/70"
                 }`}
                 onClick={() => handleNavClick(item.id)}
                 aria-current={activeSection === item.id ? "true" : undefined}
@@ -152,7 +152,7 @@ const Header = ({
                 {item.label}
               </button>
             ))}
-            <div className="flex justify-center pt-4 border-t border-formal-100 dark:border-formal-800">
+            <div className="flex justify-center pt-4 mt-2 border-t border-formal-100 dark:border-formal-800">
               <SocialLinks />
             </div>
           </nav>

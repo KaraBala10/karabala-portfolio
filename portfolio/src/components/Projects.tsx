@@ -2,22 +2,25 @@ import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import { projects } from "../data/projects";
 import Chip from "./ui/Chip";
 import Section from "./ui/Section";
+import TiltCard from "./ui/TiltCard";
 
 const Projects = () => {
   return (
     <Section
       id="projects"
       title="Programming Projects"
+      eyebrow="Selected Work"
       delay={0.1}
       maxWidth="max-w-7xl"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project) => (
-          <article
+          <TiltCard
+            as="article"
             key={project.title}
-            className="flex flex-col bg-white dark:bg-formal-800 border border-formal-200 dark:border-formal-700 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:shadow-formal-900/5 dark:hover:shadow-black/20 hover:-translate-y-1 transition-all duration-300"
+            className="flex flex-col glass-card rounded-2xl p-8"
           >
-            <h3 className="text-xl font-bold text-formal-900 dark:text-formal-50 leading-snug mb-4">
+            <h3 className="font-display text-xl font-bold text-formal-900 dark:text-formal-50 leading-snug mb-4">
               {project.title}
             </h3>
 
@@ -35,7 +38,7 @@ const Projects = () => {
                     key={feature}
                     className="flex items-start text-xs text-formal-600 dark:text-formal-400 leading-relaxed"
                   >
-                    <span className="mr-2 mt-1.5 block w-1 h-1 bg-formal-400 dark:bg-formal-500 rounded-full shrink-0" />
+                    <span className="mr-2 mt-1.5 block w-1 h-1 bg-accent rounded-full shrink-0" />
                     <span>{feature}</span>
                   </li>
                 ))}
@@ -58,7 +61,7 @@ const Projects = () => {
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-formal-900 dark:text-formal-100 hover:text-formal-600 dark:hover:text-formal-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-formal-900 dark:focus-visible:ring-formal-50 rounded-sm"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-formal-900 dark:text-formal-100 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-formal-900 dark:focus-visible:ring-formal-50 rounded-sm"
                 >
                   <FaGithub className="text-lg" aria-hidden />
                   <span>GitHub</span>
@@ -69,14 +72,14 @@ const Projects = () => {
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-formal-900 dark:text-formal-100 hover:text-formal-600 dark:hover:text-formal-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-formal-900 dark:focus-visible:ring-formal-50 rounded-sm"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-formal-900 dark:text-formal-100 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-formal-900 dark:focus-visible:ring-formal-50 rounded-sm"
                 >
                   <FaExternalLinkAlt className="text-lg" aria-hidden />
                   <span>Live Demo</span>
                 </a>
               ) : null}
             </div>
-          </article>
+          </TiltCard>
         ))}
       </div>
     </Section>

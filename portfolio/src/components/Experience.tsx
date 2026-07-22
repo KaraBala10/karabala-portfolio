@@ -1,13 +1,19 @@
 import { Calendar, MapPin } from "lucide-react";
 import { experiences } from "../data/experience";
 import Section from "./ui/Section";
+import TiltCard from "./ui/TiltCard";
 
 const Experience = () => {
   return (
-    <Section id="experience" title="Work Experience" delay={0.1} elevated>
+    <Section
+      id="experience"
+      title="Work Experience"
+      eyebrow="Career Path"
+      delay={0.1}
+    >
       <div className="relative">
         <div
-          className="absolute left-4 top-2 bottom-2 w-px bg-formal-200 dark:bg-formal-700 md:left-1/2 md:-translate-x-px"
+          className="absolute left-4 top-2 bottom-2 w-px bg-gradient-to-b from-emerald-500/70 via-formal-300 to-transparent dark:via-formal-600 md:left-1/2 md:-translate-x-px"
           aria-hidden
         />
 
@@ -18,7 +24,7 @@ const Experience = () => {
             return (
               <li key={`${exp.company}-${exp.period}`} className="relative">
                 <span
-                  className="absolute left-4 top-3 z-10 flex h-3 w-3 -translate-x-1/2 rounded-full border-2 border-formal-900 bg-white dark:border-formal-100 dark:bg-formal-900 md:left-1/2"
+                  className="absolute left-4 top-3 z-10 flex h-3.5 w-3.5 -translate-x-1/2 rounded-full border-2 border-emerald-500 bg-white dark:bg-formal-900 shadow-[0_0_8px_rgba(16,185,129,0.5)] md:left-1/2"
                   aria-hidden
                 />
 
@@ -27,14 +33,18 @@ const Experience = () => {
                     isLeft ? "md:mr-auto md:pr-4" : "md:ml-auto md:pl-4"
                   }`}
                 >
-                  <article className="rounded-2xl border border-formal-200 dark:border-formal-700 bg-white dark:bg-formal-800/80 p-6 lg:p-8 transition-colors hover:border-formal-300 dark:hover:border-formal-500">
+                  <TiltCard
+                    as="article"
+                    maxTilt={4}
+                    className="rounded-2xl glass-card p-6 lg:p-8"
+                  >
                     <div className="flex flex-col gap-3 mb-5">
                       <div className="flex flex-wrap items-center gap-3">
-                        <h3 className="text-xl lg:text-2xl font-bold text-formal-900 dark:text-formal-50">
+                        <h3 className="font-display text-xl lg:text-2xl font-bold text-formal-900 dark:text-formal-50">
                           {exp.title}
                         </h3>
                         {exp.isFreelance ? (
-                          <span className="shrink-0 px-2.5 py-1 text-[10px] uppercase tracking-widest font-bold bg-formal-900 text-formal-50 dark:bg-formal-100 dark:text-formal-900 rounded-md">
+                          <span className="shrink-0 px-2.5 py-1 text-[10px] uppercase tracking-widest font-bold bg-emerald-600 text-white dark:bg-emerald-500/20 dark:text-emerald-300 dark:border dark:border-emerald-500/30 rounded-md">
                             Freelance
                           </span>
                         ) : null}
@@ -60,12 +70,12 @@ const Experience = () => {
                           key={item}
                           className="flex items-start text-formal-700 dark:text-formal-300 leading-relaxed text-[15px]"
                         >
-                          <span className="mr-3 mt-2 block w-1.5 h-1.5 bg-formal-900 dark:bg-formal-100 rounded-full shrink-0" />
+                          <span className="mr-3 mt-2 block w-1.5 h-1.5 bg-accent rounded-full shrink-0" />
                           <span>{item}</span>
                         </li>
                       ))}
                     </ul>
-                  </article>
+                  </TiltCard>
                 </div>
               </li>
             );

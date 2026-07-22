@@ -1,25 +1,28 @@
 import { Calendar, MapPin, GraduationCap } from "lucide-react";
 import { education } from "../data/education";
 import Section from "./ui/Section";
+import TiltCard from "./ui/TiltCard";
 
 const Education = () => {
   return (
     <Section
       id="education"
       title="Education & Training"
+      eyebrow="Learning"
       delay={0.1}
       maxWidth="max-w-5xl"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {education.map((edu) => (
-          <article
+          <TiltCard
+            as="article"
             key={`${edu.institution}-${edu.degree}`}
-            className="bg-white dark:bg-formal-800 rounded-2xl p-8 lg:p-10 border border-formal-200 dark:border-formal-700 shadow-sm transition-colors hover:border-formal-300 dark:hover:border-formal-500"
+            className="glass-card rounded-2xl p-8 lg:p-10"
           >
-            <div className="w-14 h-14 bg-formal-100 dark:bg-formal-700 rounded-xl flex items-center justify-center text-formal-900 dark:text-formal-100 mb-6">
+            <div className="w-14 h-14 bg-emerald-50 dark:bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-700 dark:text-emerald-300 mb-6">
               <GraduationCap size={28} aria-hidden />
             </div>
-            <h3 className="text-2xl font-bold text-formal-900 dark:text-formal-50 leading-snug mb-2">
+            <h3 className="font-display text-2xl font-bold text-formal-900 dark:text-formal-50 leading-snug mb-2">
               {edu.degree}
             </h3>
             <h4 className="text-lg font-semibold text-formal-600 dark:text-formal-400 mb-6">
@@ -44,7 +47,7 @@ const Education = () => {
                 <span className="uppercase tracking-wider">{edu.location}</span>
               </div>
             </div>
-          </article>
+          </TiltCard>
         ))}
       </div>
     </Section>

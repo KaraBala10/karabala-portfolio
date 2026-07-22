@@ -16,7 +16,7 @@ const Chip = ({ children, size = "md", elevated = false }: ChipProps) => {
 
   return (
     <span
-      className={`inline-block border border-formal-200 dark:border-formal-600 text-formal-700 dark:text-formal-300 font-medium ${sizeClasses} ${toneClasses} hover:border-formal-400 dark:hover:border-formal-400 hover:text-formal-900 dark:hover:text-formal-50 transition-colors cursor-default`}
+      className={`inline-block border border-formal-200 dark:border-formal-600 text-formal-700 dark:text-formal-300 font-medium ${sizeClasses} ${toneClasses} hover:border-emerald-500/50 dark:hover:border-emerald-400/50 hover:text-formal-900 dark:hover:text-formal-50 transition-colors cursor-default`}
     >
       {children}
     </span>

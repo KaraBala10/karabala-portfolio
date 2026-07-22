@@ -5,9 +5,13 @@ import Education from "./components/Education";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
-import BackgroundDecorations from "./components/BackgroundDecorations";
+import ScrollProgress from "./components/ui/ScrollProgress";
+import { lazy, Suspense } from "react";
 import { useTheme } from "./hooks/useTheme";
 import { useActiveSection } from "./hooks/useActiveSection";
+
+// Heavy WebGL/Three.js payload — split out so it never blocks first paint.
+const ThreeBackground = lazy(() => import("./components/ThreeBackground"));
 
 function App() {
   const activeSection = useActiveSection("about");
@@ -29,7 +33,10 @@ function App() {
 
   return (
     <div className="min-h-screen font-sans relative bg-formal-50 text-formal-900 selection:bg-formal-900 selection:text-white dark:bg-formal-900 dark:text-formal-50 dark:selection:bg-formal-50 dark:selection:text-formal-900 transition-colors duration-500">
-      <BackgroundDecorations />
+      <Suspense fallback={null}>
+        <ThreeBackground theme={theme} />
+      </Suspense>
+      <ScrollProgress />
       <Header
         activeSection={activeSection}
         scrollToSection={scrollToSection}

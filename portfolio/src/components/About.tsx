@@ -2,6 +2,7 @@ import { Mail, Phone, MapPin, Briefcase, Download, ArrowRight } from "lucide-rea
 import developerImage from "../assets/karabala.jpeg";
 import { site } from "../data/site";
 import AnimatedSection from "./AnimatedSection";
+import TiltCard from "./ui/TiltCard";
 
 interface AboutProps {
   scrollToSection: (sectionId: string) => void;
@@ -40,25 +41,26 @@ const About = ({ scrollToSection }: AboutProps) => {
         <div className="w-full flex flex-col lg:flex-row lg:items-center items-center gap-8 lg:gap-14 xl:gap-16">
           <div className="flex-1 order-2 lg:order-1 text-center lg:text-left space-y-5 lg:space-y-6 w-full min-w-0">
             <div>
-              <span className="text-sm font-semibold uppercase tracking-widest text-formal-500 dark:text-formal-400 mb-1 block">
+              <span className="inline-flex items-center gap-2.5 text-sm font-bold uppercase tracking-[0.2em] text-accent mb-3">
+                <span className="w-8 h-px bg-accent/60" aria-hidden />
                 {site.eyebrow}
               </span>
-              <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-formal-900 dark:text-formal-50 tracking-tight leading-tight">
+              <h1 className="font-display text-3xl md:text-5xl lg:text-6xl font-extrabold text-gradient tracking-tight leading-tight pb-1">
                 {site.name}
               </h1>
             </div>
 
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
-              {site.roles.map((role, index) => (
-                <span key={role} className="contents">
-                  {index > 0 ? (
-                    <span className="text-formal-300 dark:text-formal-600 hidden sm:inline-block">
-                      •
-                    </span>
-                  ) : null}
-                  <span className="px-3.5 py-1.5 rounded-full bg-formal-100/90 dark:bg-formal-800/90 text-formal-800 dark:text-formal-100 text-sm font-medium tracking-wide border border-formal-200 dark:border-formal-700">
-                    {role}
-                  </span>
+              {site.roles.map((role) => (
+                <span
+                  key={role}
+                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-card text-formal-800 dark:text-formal-100 text-sm font-semibold tracking-wide"
+                >
+                  <span
+                    className="w-1.5 h-1.5 rounded-full bg-accent"
+                    aria-hidden
+                  />
+                  {role}
                 </span>
               ))}
             </div>
@@ -71,11 +73,12 @@ const About = ({ scrollToSection }: AboutProps) => {
               {metaItems.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <div
+                  <TiltCard
                     key={item.label}
-                    className="flex items-center gap-3 p-3 rounded-xl border border-formal-200 dark:border-formal-700 bg-white/70 dark:bg-formal-800/70 backdrop-blur-sm transition-colors hover:border-formal-300 dark:hover:border-formal-600"
+                    maxTilt={5}
+                    className="flex items-center gap-3 p-3 rounded-xl glass-card"
                   >
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-formal-100 dark:bg-formal-700 text-formal-700 dark:text-formal-200">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-300">
                       <Icon size={16} aria-hidden />
                     </span>
                     <div className="text-left min-w-0">
@@ -86,7 +89,7 @@ const About = ({ scrollToSection }: AboutProps) => {
                         {item.value}
                       </div>
                     </div>
-                  </div>
+                  </TiltCard>
                 );
               })}
             </div>
@@ -95,28 +98,39 @@ const About = ({ scrollToSection }: AboutProps) => {
               <a
                 href={site.cvPath}
                 download
-                className="inline-flex items-center gap-2 px-6 py-3 bg-formal-900 dark:bg-formal-50 hover:bg-formal-800 dark:hover:bg-formal-200 text-white dark:text-formal-900 rounded-lg font-medium transition-colors shadow-md shadow-formal-900/10 dark:shadow-formal-50/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-formal-900 dark:focus-visible:ring-formal-50"
+                className="group inline-flex items-center gap-2 px-6 py-3 bg-formal-900 dark:bg-formal-50 hover:bg-formal-800 dark:hover:bg-white text-white dark:text-formal-900 rounded-xl font-semibold transition-all duration-300 shadow-md shadow-formal-900/10 hover:shadow-lg hover:shadow-emerald-600/20 dark:hover:shadow-emerald-400/20 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-formal-900 dark:focus-visible:ring-formal-50"
               >
-                <Download size={18} aria-hidden />
+                <Download
+                  size={18}
+                  className="transition-transform group-hover:translate-y-0.5"
+                  aria-hidden
+                />
                 <span>Download CV</span>
               </a>
               <button
                 type="button"
                 onClick={() => scrollToSection("contact")}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-formal-900 hover:bg-formal-50 dark:hover:bg-formal-800 text-formal-900 dark:text-formal-50 border border-formal-200 dark:border-formal-700 rounded-lg font-medium transition-colors shadow-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-formal-900 dark:focus-visible:ring-formal-50"
+                className="group inline-flex items-center gap-2 px-6 py-3 glass-card text-formal-900 dark:text-formal-50 rounded-xl font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-formal-900 dark:focus-visible:ring-formal-50"
               >
                 <span>Get In Touch</span>
-                <ArrowRight size={18} aria-hidden />
+                <ArrowRight
+                  size={18}
+                  className="transition-transform group-hover:translate-x-1"
+                  aria-hidden
+                />
               </button>
             </div>
           </div>
 
           <div className="flex-shrink-0 order-1 lg:order-2 w-full max-w-[200px] sm:max-w-[240px] lg:max-w-[300px] xl:max-w-[340px] mx-auto relative isolate">
             <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-formal-200/40 to-formal-100/40 dark:from-formal-700/25 dark:to-formal-800/25 rounded-full blur-3xl -z-10 transition-colors duration-500"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-emerald-300/30 via-sky-200/25 to-formal-100/30 dark:from-emerald-500/15 dark:via-sky-500/10 dark:to-indigo-500/15 rounded-full blur-3xl -z-10 transition-colors duration-500"
               aria-hidden
             />
-            <div className="relative z-[1] p-2 rounded-2xl bg-white dark:bg-formal-800 shadow-xl shadow-formal-900/5 dark:shadow-black/20 ring-1 ring-formal-900/5 dark:ring-formal-50/5 aspect-[4/5] overflow-hidden">
+            <TiltCard
+              maxTilt={9}
+              className="z-[1] p-2 rounded-2xl bg-white dark:bg-formal-800 shadow-xl shadow-formal-900/5 dark:shadow-black/20 ring-1 ring-formal-900/5 dark:ring-formal-50/5 aspect-[4/5] overflow-hidden"
+            >
               <img
                 src={developerImage}
                 alt={site.name}
@@ -128,7 +142,7 @@ const About = ({ scrollToSection }: AboutProps) => {
                   Available for work
                 </span>
               </div>
-            </div>
+            </TiltCard>
           </div>
         </div>
       </div>
