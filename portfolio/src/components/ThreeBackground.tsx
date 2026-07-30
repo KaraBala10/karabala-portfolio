@@ -88,7 +88,9 @@ const fragmentShader = /* glsl */ `
     float v = 0.0;
     float amp = 0.55;
     mat2 rot = mat2(0.8, 0.6, -0.6, 0.8);
-    for (int i = 0; i < 5; i++) {
+    // 4 octaves: the canvas renders at half resolution, so the fifth
+    // octave's detail was lost to upscaling anyway.
+    for (int i = 0; i < 4; i++) {
       v += amp * noise(p);
       p = rot * p * 2.02;
       amp *= 0.5;
@@ -156,9 +158,14 @@ const ThreeBackground = ({ theme }: ThreeBackgroundProps) => {
     const renderer = new THREE.WebGLRenderer({
       alpha: true,
       antialias: false, // fullscreen gradient needs no MSAA
-      powerPreference: "high-performance",
+      // Background ambiance must never spin up the discrete GPU or
+      // compete with the page for battery.
+      powerPreference: "low-power",
     });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    // Half-resolution buffer stretched by CSS: the aurora is pure soft
+    // gradient, so upscaling is invisible while per-frame shader cost
+    // drops ~9x versus the old 1.5 pixel ratio.
+    renderer.setPixelRatio(0.5);
     renderer.setSize(width, height);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     mount.appendChild(renderer.domElement);
@@ -235,9 +242,17 @@ const ThreeBackground = ({ theme }: ThreeBackgroundProps) => {
     let frameId = 0;
     let running = true;
 
-    const animate = () => {
+    // 30fps is imperceptible for a slow aurora drift, and halving the
+    // frame rate also halves the backdrop-filter recompositing the
+    // glass cards do whenever the canvas behind them changes.
+    const FRAME_MS = 1000 / 30;
+    let lastFrame = 0;
+
+    const animate = (now: number) => {
       if (!running) return;
       frameId = requestAnimationFrame(animate);
+      if (now - lastFrame < FRAME_MS) return;
+      lastFrame = now;
 
       if (themeRef.current !== appliedTheme) {
         applyTheme(themeRef.current);
@@ -254,7 +269,8 @@ const ThreeBackground = ({ theme }: ThreeBackgroundProps) => {
         elapsed += delta;
         material.uniforms.uTime.value = elapsed;
         const m = material.uniforms.uMouse.value as THREE.Vector2;
-        m.lerp(mouseTarget, 0.045);
+        // 0.09 at 30fps ≈ the old 0.045 at 60fps.
+        m.lerp(mouseTarget, 0.09);
       }
 
       renderer.render(scene, camera);
@@ -268,11 +284,11 @@ const ThreeBackground = ({ theme }: ThreeBackgroundProps) => {
         running = true;
         clock.getDelta(); // drop the hidden-tab gap
         dirty = true;
-        animate();
+        animate(performance.now());
       }
     };
     document.addEventListener("visibilitychange", onVisibility);
-    animate();
+    animate(performance.now());
 
     return () => {
       running = false;
@@ -294,7 +310,7 @@ const ThreeBackground = ({ theme }: ThreeBackgroundProps) => {
   return (
     <div
       ref={mountRef}
-      className="fixed inset-0 z-[1] pointer-events-none"
+      className="fixed inset-0 z-[1] pointer-events-none bg-fade-in"
       aria-hidden
     />
   );

@@ -155,3 +155,18 @@ body {
     box-shadow: 0 8px 32px -16px rgb(0 0 0 / 0.5);
   }
 }
+
+/* The aurora canvas mounts after the page is idle — ease it in instead
+   of popping. */
+@keyframes bg-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.bg-fade-in {
+  animation: bg-fade-in 1s ease-out both;
+}
