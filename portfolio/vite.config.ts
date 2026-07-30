@@ -8,4 +8,9 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  ssr: {
+    // react-icons ships ESM with directory imports Node can't resolve
+    // natively — bundle it into the prerender build instead.
+    noExternal: ['react-icons'],
+  },
 })
