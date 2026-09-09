@@ -5,10 +5,10 @@ export const profile: Profile = {
   firstName: "Mohammad",
   lastName: "KaraBala",
   monogram: "MK",
-  title: "AI & Automation Engineer",
-  headline: "Systems that keep running after the demo.",
+  title: "Software & Full-Stack Engineer",
+  headline: "Software that holds up in production.",
   intro:
-    "I design automation pipelines, AI workflows and full-stack backends — Python at the core, React on top, Docker and Linux underneath — and I run them in production.",
+    "I build full-stack products end to end — Python backends, React and TypeScript front ends, the APIs between them, and the Docker and Linux infrastructure underneath — then keep them running.",
   location: "Damascus, Syria",
   timezone: "Asia/Damascus",
   utcOffsetLabel: "UTC+3",
@@ -26,14 +26,14 @@ export const profile: Profile = {
   cvPath: "/Mohammad_KaraBala.pdf",
   siteUrl: "https://karabala-portfolio.vercel.app/",
   now: [
+    "Next.js App Router and server components",
     "Agentic workflows with LangGraph",
     "Running local models with Ollama",
-    "Hardening scrapers against anti-bot systems",
   ],
   greeter: {
     teaser: "Hey, how's it going? 👋",
     message:
-      "I'm Mohammad. If you're hiring an automation engineer or have a pipeline that needs to run itself, I'd love to hear about it. Messages come straight to me.",
+      "I'm Mohammad. If you're hiring a full-stack engineer or need a product built end to end, I'd love to hear about it. Messages come straight to me.",
   },
 };
 

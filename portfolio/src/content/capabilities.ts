@@ -1,66 +1,49 @@
 import type { Capability } from "./types";
 
 /**
- * Four pillars of expertise. `level` drives the visual hierarchy:
- * core = deep, daily use · working = productive · exploring = actively learning
+ * Four pillars of expertise, full-stack first. `level` drives the visual
+ * hierarchy: core = deep, daily use · working = productive · exploring = learning
  */
 export const capabilities: Capability[] = [
   {
-    id: "automation",
-    index: "01",
-    title: "Automation & data extraction",
-    lead: "Workflows that run unattended.",
-    description:
-      "From n8n orchestration to scraping pipelines that survive dynamic pages, anti-bot measures and virtual mobile environments. I build the parts that have to keep working at 3 a.m.",
-    skills: [
-      { name: "n8n", level: "core" },
-      { name: "Web scraping", level: "core" },
-      { name: "Playwright", level: "core" },
-      { name: "Scrapy", level: "working" },
-      { name: "Selenium", level: "working" },
-      { name: "ADB / Redroid", level: "working" },
-      { name: "Webhooks", level: "core" },
-    ],
-  },
-  {
-    id: "ai",
-    index: "02",
-    title: "AI & LLM systems",
-    lead: "Models wired into real pipelines.",
-    description:
-      "Structured generation, multi-step chains and agentic workflows — with the retries, validation and observability that turn a demo into a service.",
-    skills: [
-      { name: "LLM APIs (Claude, GPT)", level: "core" },
-      { name: "LangChain", level: "working" },
-      { name: "LangGraph", level: "exploring" },
-      { name: "Ollama", level: "exploring" },
-      { name: "Prompt & output validation", level: "core" },
-    ],
-  },
-  {
     id: "backend",
-    index: "03",
-    title: "Backend & full-stack",
-    lead: "Python services, React on top.",
+    index: "01",
+    title: "Backend & APIs",
+    lead: "Python services that scale and stay up.",
     description:
-      "REST APIs, relational schemas and the front ends that use them. Multilingual (Arabic/English) products with third-party integrations.",
+      "REST APIs, relational schemas designed around integrity, background jobs and integrations with third-party systems. Django when the product needs batteries, FastAPI when it needs speed.",
     skills: [
       { name: "Python", level: "core" },
       { name: "Django", level: "core" },
       { name: "FastAPI", level: "working" },
       { name: "Flask", level: "working" },
-      { name: "React", level: "core" },
-      { name: "TypeScript", level: "working" },
-      { name: "Next.js", level: "working" },
+      { name: "REST API design", level: "core" },
       { name: "PostgreSQL", level: "core" },
       { name: "MySQL", level: "working" },
       { name: "MongoDB", level: "working" },
-      { name: "REST APIs", level: "core" },
+      { name: "SQL", level: "core" },
+    ],
+  },
+  {
+    id: "frontend",
+    index: "02",
+    title: "Frontend & product",
+    lead: "Interfaces people actually use.",
+    description:
+      "Component-driven React applications with TypeScript, responsive and accessible by default, including bilingual Arabic/English products with right-to-left layouts.",
+    skills: [
+      { name: "React", level: "core" },
+      { name: "TypeScript", level: "working" },
+      { name: "JavaScript", level: "core" },
+      { name: "Next.js", level: "working" },
+      { name: "HTML & CSS", level: "core" },
+      { name: "Responsive & RTL UI", level: "core" },
+      { name: "Accessibility", level: "working" },
     ],
   },
   {
     id: "infra",
-    index: "04",
+    index: "03",
     title: "DevOps & infrastructure",
     lead: "Repeatable deployments, monitored.",
     description:
@@ -73,6 +56,24 @@ export const capabilities: Capability[] = [
       { name: "Bash", level: "working" },
       { name: "Git", level: "core" },
       { name: "Monitoring", level: "working" },
+    ],
+  },
+  {
+    id: "automation",
+    index: "04",
+    title: "Automation & AI integration",
+    lead: "Workflows and models wired into real products.",
+    description:
+      "n8n orchestration, resilient scraping pipelines and LLM stages with the retries, validation and observability that turn a demo into a service.",
+    skills: [
+      { name: "n8n", level: "core" },
+      { name: "Web scraping", level: "core" },
+      { name: "Playwright", level: "core" },
+      { name: "Scrapy", level: "working" },
+      { name: "LLM APIs (Claude, GPT)", level: "core" },
+      { name: "LangChain", level: "working" },
+      { name: "LangGraph", level: "exploring" },
+      { name: "Ollama", level: "exploring" },
     ],
   },
 ];

@@ -1,6 +1,6 @@
 # Mohammad KaraBala — Portfolio
 
-Personal site of an AI & Automation Engineer. Designed from first principles as a
+Personal site of a Software & Full-Stack Engineer. Designed from first principles as a
 premium, fast, data-driven developer portfolio: a graphite-and-ivory visual system
 with one signal accent, editorial typography, generated pipeline schematics for
 every project, and a hand-written WebGL "lattice" as the hero object.

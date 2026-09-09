@@ -145,7 +145,7 @@ export function Work() {
     <SectionShell
       id="work"
       title="Selected work"
-      intro="Three systems I would put in front of anyone, each drawn as the pipeline it actually is, and a ledger of the rest."
+      intro="Three systems I would put in front of anyone, each drawn as the architecture it actually is, and a ledger of the rest."
     >
       <div className={styles.cases}>
         {featuredProjects.map((p, i) => (

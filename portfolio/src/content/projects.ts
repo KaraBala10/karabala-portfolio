@@ -1,41 +1,11 @@
 import type { Project } from "./types";
 
 /**
- * Projects, strongest first. `featured` entries render as full case rows;
+ * Projects, full-stack product first. `featured` entries render as full case rows;
  * the rest appear in the compact ledger. `flow` drives the generated
  * schematic, so every project gets a visual without a screenshot.
  */
 export const projects: Project[] = [
-  {
-    slug: "ai-content-pipeline",
-    title: "AI Content Automation Pipeline",
-    tagline: "Social media publishing with zero manual steps",
-    domain: "Automation · AI",
-    year: "2024 —",
-    role: "Design & engineering, end to end",
-    featured: true,
-    summary:
-      "An end-to-end system that generates, formats and schedules text and video content, then publishes it across Telegram and social platforms without a human in the loop.",
-    problem:
-      "Publishing across several platforms meant repetitive manual work and inconsistent output. The goal was a pipeline that runs unattended, every day, and fails loudly rather than silently.",
-    built: [
-      "n8n workflows orchestrating generation, formatting and scheduled distribution",
-      "AI-driven text and video generation stages with structured hand-offs between steps",
-      "Multi-platform publishing through webhooks and platform APIs",
-      "Python services for the steps a visual workflow shouldn't own",
-    ],
-    impact:
-      "Removed the manual publishing workload entirely and made output consistent across platforms.",
-    stack: ["n8n", "Python", "LLM APIs", "Webhooks", "Telegram API", "Docker"],
-    flow: [
-      { label: "Schedule", kind: "source" },
-      { label: "n8n", kind: "process" },
-      { label: "LLM", kind: "ai" },
-      { label: "Format", kind: "process" },
-      { label: "Publish", kind: "output" },
-    ],
-    links: [],
-  },
   {
     slug: "list-manager",
     title: "Full-Stack List Manager",
@@ -94,6 +64,36 @@ export const projects: Project[] = [
       { kind: "github", label: "Source", href: "https://github.com/KaraBala10/sp-today-api" },
       { kind: "bot", label: "Telegram bot", href: "https://t.me/its_sptodayBOT" },
     ],
+  },
+  {
+    slug: "ai-content-pipeline",
+    title: "AI Content Automation Pipeline",
+    tagline: "Social media publishing with zero manual steps",
+    domain: "Automation · AI",
+    year: "2024 —",
+    role: "Design & engineering, end to end",
+    featured: true,
+    summary:
+      "An end-to-end system that generates, formats and schedules text and video content, then publishes it across Telegram and social platforms without a human in the loop.",
+    problem:
+      "Publishing across several platforms meant repetitive manual work and inconsistent output. The goal was a pipeline that runs unattended, every day, and fails loudly rather than silently.",
+    built: [
+      "n8n workflows orchestrating generation, formatting and scheduled distribution",
+      "AI-driven text and video generation stages with structured hand-offs between steps",
+      "Multi-platform publishing through webhooks and platform APIs",
+      "Python services for the steps a visual workflow shouldn't own",
+    ],
+    impact:
+      "Removed the manual publishing workload entirely and made output consistent across platforms.",
+    stack: ["n8n", "Python", "LLM APIs", "Webhooks", "Telegram API", "Docker"],
+    flow: [
+      { label: "Schedule", kind: "source" },
+      { label: "n8n", kind: "process" },
+      { label: "LLM", kind: "ai" },
+      { label: "Format", kind: "process" },
+      { label: "Publish", kind: "output" },
+    ],
+    links: [],
   },
   {
     slug: "cv-mailer",
