@@ -1,0 +1,222 @@
+.cases {
+  display: flex;
+  flex-direction: column;
+}
+
+.case {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: var(--s-8);
+  padding-block: clamp(2.5rem, 6vw, 5rem);
+  border-top: 1px solid var(--c-line);
+}
+.visual,
+.body {
+  grid-column: 1 / -1;
+}
+@media (min-width: 1024px) {
+  .visual {
+    grid-column: 1 / 7;
+  }
+  .body {
+    grid-column: 8 / -1;
+  }
+  .case:nth-child(even) .visual {
+    grid-column: 7 / -1;
+    order: 2;
+  }
+  .case:nth-child(even) .body {
+    grid-column: 1 / 6;
+  }
+}
+
+.plate {
+  position: sticky;
+  top: 6rem;
+  padding: clamp(1rem, 3vw, 2rem);
+  border-radius: var(--r-md);
+  background: var(--c-bg-elev);
+  box-shadow: var(--shadow-plate);
+  transition: box-shadow var(--dur) var(--ease-out);
+}
+.case:hover .plate {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 0 0 1px var(--c-line-strong);
+}
+
+.meta {
+  display: flex;
+  gap: var(--s-4);
+  color: var(--c-fg-faint);
+  margin-bottom: var(--s-5);
+}
+.metaIndex {
+  color: var(--c-accent-text);
+}
+.title {
+  font-size: var(--text-2xl);
+}
+.tagline {
+  margin-top: var(--s-3);
+  font-size: var(--text-lg);
+  color: var(--c-fg-muted);
+  text-wrap: balance;
+}
+.summary {
+  margin-top: var(--s-5);
+}
+
+.facts {
+  display: grid;
+  gap: var(--s-5);
+  margin-top: var(--s-8);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--c-line);
+}
+.fact {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: var(--s-4);
+  align-items: baseline;
+}
+.fact dt {
+  color: var(--c-fg-faint);
+}
+.fact dd {
+  margin: 0;
+  color: var(--c-fg-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
+.built {
+  display: grid;
+  gap: 0.35rem;
+}
+.built li {
+  position: relative;
+  padding-left: 1rem;
+}
+.built li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 6px;
+  height: 1px;
+  background: var(--c-accent);
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: var(--s-8);
+}
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin-top: var(--s-6);
+}
+.private {
+  color: var(--c-fg-faint);
+}
+
+/* ---- Ledger ---- */
+.ledger {
+  margin-top: var(--s-12);
+  border-top: 1px solid var(--c-line);
+  padding-top: var(--s-6);
+}
+.ledgerHead {
+  color: var(--c-fg-faint);
+  margin-bottom: var(--s-2);
+}
+.rows {
+  display: flex;
+  flex-direction: column;
+}
+.row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: var(--s-3) var(--s-4);
+  padding: var(--s-5) 0;
+  border-top: 1px solid var(--c-line);
+  transition: background-color var(--dur) var(--ease-out);
+}
+.row::before {
+  content: "";
+  position: absolute;
+  inset: 0 -1rem;
+  border-radius: var(--r-sm);
+  background: var(--c-surface);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity var(--dur) var(--ease-out);
+}
+.row:hover::before,
+.row:focus-within::before {
+  opacity: 1;
+}
+@media (min-width: 768px) {
+  .row {
+    grid-template-columns: 2.5rem 1.4fr 1fr auto;
+    align-items: start;
+  }
+}
+.rowIndex {
+  color: var(--c-accent-text);
+  padding-top: 0.35rem;
+}
+.rowTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.rowTagline {
+  color: var(--c-fg-muted);
+  margin-top: 0.15rem;
+}
+.rowSummary {
+  margin-top: var(--s-2);
+  font-size: var(--text-sm);
+  color: var(--c-fg-faint);
+  max-width: 52ch;
+  text-wrap: pretty;
+}
+.rowStack {
+  grid-column: 2;
+  color: var(--c-fg-faint);
+  text-transform: none;
+  letter-spacing: 0.02em;
+  padding-top: 0.4rem;
+}
+.rowLinks {
+  grid-column: 2;
+  display: flex;
+  gap: var(--s-2);
+}
+@media (min-width: 768px) {
+  .rowStack,
+  .rowLinks {
+    grid-column: auto;
+  }
+}
+.rowLink {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--r-sm);
+  color: var(--c-fg-muted);
+  box-shadow: inset 0 0 0 1px var(--c-line);
+  transition: color var(--dur-fast), box-shadow var(--dur-fast), transform var(--dur) var(--ease-out);
+}
+.rowLink:hover,
+.rowLink:focus-visible {
+  color: var(--c-fg);
+  box-shadow: inset 0 0 0 1px var(--c-line-strong);
+  transform: translateY(-2px);
+}

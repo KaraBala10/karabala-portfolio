@@ -1,0 +1,84 @@
+.rail {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .rail {
+    --progress: 0;
+    position: fixed;
+    left: 0;
+    top: 50%;
+    z-index: var(--z-chrome);
+    display: flex;
+    align-items: center;
+    gap: var(--s-4);
+    width: var(--rail-w);
+    padding-left: calc(var(--page-pad) * 0.5);
+    transform: translateY(-50%);
+  }
+  .track {
+    position: relative;
+    width: 1px;
+    height: 12rem;
+    background: var(--c-line);
+    overflow: hidden;
+    border-radius: 1px;
+  }
+  .progress {
+    position: absolute;
+    inset: 0;
+    background: var(--c-accent);
+    transform-origin: top;
+    transform: scaleY(var(--progress));
+  }
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    height: 1.6rem;
+    padding: 0 0.35rem;
+    margin-left: -0.35rem;
+    border-radius: var(--r-xs);
+    color: var(--c-fg-faint);
+    transition: color var(--dur-fast) var(--ease-out);
+    white-space: nowrap;
+  }
+  .index {
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+  }
+  .label {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    max-width: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateX(-6px);
+    transition:
+      max-width var(--dur) var(--ease-out),
+      opacity var(--dur) var(--ease-out),
+      transform var(--dur) var(--ease-out);
+  }
+  .item:hover,
+  .item:focus-visible {
+    color: var(--c-fg);
+  }
+  .item[aria-current] {
+    color: var(--c-fg);
+  }
+  .item[aria-current] .index {
+    color: var(--c-accent-text);
+  }
+  .item:hover .label,
+  .item:focus-visible .label,
+  .item[aria-current] .label {
+    max-width: 10rem;
+    opacity: 1;
+    transform: none;
+  }
+}

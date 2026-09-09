@@ -1,0 +1,347 @@
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100svh;
+  padding-top: 6.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: var(--s-12);
+  align-items: center;
+  flex: 1;
+}
+.copy {
+  grid-column: 1 / -1;
+}
+.visual {
+  grid-column: 1 / -1;
+}
+@media (min-width: 1024px) {
+  .copy {
+    grid-column: 1 / 8;
+  }
+  .visual {
+    grid-column: 8 / -1;
+  }
+}
+
+/* ---- Copy ---- */
+.eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  color: var(--c-fg-muted);
+  margin-bottom: var(--s-6);
+}
+.eyebrowAccent {
+  color: var(--c-accent-text);
+}
+.name {
+  font-size: clamp(3.1rem, 1.4rem + 7.2vw, 8rem);
+  font-weight: 700;
+  line-height: 0.92;
+  display: flex;
+  flex-direction: column;
+}
+.last {
+  color: var(--c-fg);
+  -webkit-text-stroke: 0;
+}
+.first {
+  color: var(--c-fg-muted);
+  font-weight: 500;
+}
+.headline {
+  margin-top: var(--s-8);
+  font-size: var(--text-xl);
+  font-weight: 500;
+  line-height: 1.2;
+  max-width: 22ch;
+  color: var(--c-fg);
+}
+.intro {
+  margin-top: var(--s-5);
+  font-size: var(--text-lg);
+  color: var(--c-fg-muted);
+  max-width: 52ch;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3);
+  margin-top: var(--s-10);
+}
+
+/* Camera-like exit as you scroll (scroll-driven, zero JS, gated by support) */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) and (min-width: 1024px) {
+    .copy {
+      animation: hero-exit linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 70vh;
+    }
+  }
+}
+@keyframes hero-exit {
+  to {
+    opacity: 0.15;
+    transform: translate3d(0, -32px, 0) scale(0.97);
+  }
+}
+
+/* ---- Visual composition: portrait plate over the lattice ---- */
+.visual {
+  position: relative;
+  width: min(100%, 26rem);
+  aspect-ratio: 4 / 5;
+  margin-inline: 0 auto;
+}
+@media (min-width: 1024px) {
+  .visual {
+    width: min(100%, 30rem);
+    margin-inline: auto 0;
+  }
+}
+
+.orbit {
+  position: absolute;
+  z-index: 0;
+  width: 118%;
+  aspect-ratio: 1;
+  left: -38%;
+  top: -14%;
+  pointer-events: none;
+}
+.orbitFallback {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  border: 1px solid var(--c-line-strong);
+  opacity: 0.6;
+}
+.orbitFallback::after {
+  content: "";
+  position: absolute;
+  inset: 22%;
+  border-radius: 50%;
+  border: 1px dashed var(--c-line-strong);
+}
+.lattice {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1.2s var(--ease-out);
+}
+.lattice:global(.is-ready) {
+  opacity: 1;
+}
+.orbit:has(.lattice:global(.is-ready)) .orbitFallback {
+  opacity: 0;
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+
+.plate {
+  --rx: 0deg;
+  --ry: 0deg;
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  transform-style: preserve-3d;
+  perspective: 1200px;
+}
+.outline {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--c-line-strong);
+  border-radius: var(--r-xs);
+  transform: translate(-14px, 14px);
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+.plate:hover .outline {
+  transform: translate(-18px, 18px);
+}
+.frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: var(--r-xs);
+  background: var(--c-surface);
+  transform: perspective(1200px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform var(--dur) var(--ease-out);
+  will-change: transform;
+}
+.frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.88) contrast(1.04);
+  mask-image: linear-gradient(to bottom, black 72%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 72%, transparent 100%);
+  background: var(--c-surface-2) url("/portrait/portrait-lqip.jpg") center / cover no-repeat;
+}
+.frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, var(--c-accent-soft), transparent 45%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+/* Paper theme: a dark photo dissolving into cream reads as a grey smudge, so
+   the portrait becomes a crisp framed plate instead of a fade. */
+:root[data-theme="light"] .frame {
+  box-shadow: 0 0 0 1px var(--c-line-strong), 0 24px 48px -24px rgba(30, 20, 10, 0.35);
+}
+:root[data-theme="light"] .frame img {
+  mask-image: none;
+  -webkit-mask-image: none;
+  filter: saturate(0.95) contrast(1.02);
+}
+:root[data-theme="light"] .frame::after {
+  display: none;
+}
+:root[data-theme="light"] .corner {
+  color: var(--c-bg);
+}
+.corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  color: var(--c-fg);
+  opacity: 0.8;
+}
+.corner::before,
+.corner::after {
+  content: "";
+  position: absolute;
+  background: currentColor;
+}
+.corner::before {
+  width: 100%;
+  height: 1px;
+}
+.corner::after {
+  width: 1px;
+  height: 100%;
+}
+.tl {
+  top: 10px;
+  left: 10px;
+}
+.tl::before {
+  top: 0;
+  left: 0;
+}
+.tl::after {
+  top: 0;
+  left: 0;
+}
+.br {
+  right: 10px;
+  bottom: 10px;
+}
+.br::before {
+  bottom: 0;
+  right: 0;
+}
+.br::after {
+  bottom: 0;
+  right: 0;
+}
+.caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2rem;
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-3);
+  color: var(--c-fg-faint);
+}
+
+/* ---- Status bar ---- */
+/* Sits at the bottom edge of the opening viewport, so it fades in on load
+   rather than through the scroll-reveal observer (which would leave it hidden
+   on tall screens until the first scroll). */
+.statusWrap {
+  margin-top: clamp(3rem, 8vh, 6rem);
+  animation: status-in var(--dur-reveal) var(--ease-out) 500ms both;
+}
+@keyframes status-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+}
+.status {
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--c-line);
+  border-bottom: 1px solid var(--c-line);
+}
+.statusItem {
+  display: flex;
+  align-items: center;
+  padding: 0.85rem 1.1rem 0.85rem 0;
+  margin-right: 1.1rem;
+  border-right: 1px solid var(--c-line);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-fg-muted);
+}
+.statusItem:last-child {
+  border-right: 0;
+  margin-right: 0;
+}
+.statusItem dd {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  white-space: nowrap;
+}
+.statusTime {
+  margin-left: auto;
+}
+.pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  box-shadow: 0 0 0 0 var(--c-accent-soft);
+  animation: pulse 2.4s ease-out infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 var(--c-accent-soft); }
+  70% { box-shadow: 0 0 0 8px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+@media (max-width: 639px) {
+  .statusItem:nth-child(3) {
+    display: none;
+  }
+  /* Narrow screens: let the availability line wrap instead of overflowing the viewport */
+  .statusItem:first-child {
+    flex: 1 1 100%;
+    margin-right: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--c-line);
+  }
+  .statusItem:first-child dd {
+    white-space: normal;
+    line-height: 1.5;
+  }
+  .statusTime {
+    margin-left: 0;
+  }
+}

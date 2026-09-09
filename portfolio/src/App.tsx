@@ -1,83 +1,66 @@
-import Header from "./components/Header";
-import About from "./components/About";
-import Experience from "./components/Experience";
-import Education from "./components/Education";
-import Skills from "./components/Skills";
-import Projects from "./components/Projects";
-import Contact from "./components/Contact";
-import ScrollProgress from "./components/ui/ScrollProgress";
-import { lazy, Suspense, useEffect, useState } from "react";
-import { useTheme } from "./hooks/useTheme";
-import { useActiveSection } from "./hooks/useActiveSection";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Atmosphere } from "./chrome/Atmosphere";
+import { CommandMenu } from "./chrome/CommandMenu";
+import { Dock } from "./chrome/Dock";
+import { Footer } from "./chrome/Footer";
+import { Greeter } from "./chrome/Greeter";
+import { Rail } from "./chrome/Rail";
+import { TopBar } from "./chrome/TopBar";
+import { useActiveSection } from "./lib/useActiveSection";
+import { useHotkey } from "./lib/useHotkey";
+import { useReveal } from "./lib/useReveal";
+import { useTheme } from "./lib/useTheme";
+import { Approach } from "./sections/Approach";
+import { Capabilities } from "./sections/Capabilities";
+import { Contact } from "./sections/Contact";
+import { Hero } from "./sections/Hero";
+import { Track } from "./sections/Track";
+import { Work } from "./sections/Work";
 
-// Heavy WebGL/Three.js payload — split out so it never blocks first paint.
-const ThreeBackground = lazy(() => import("./components/ThreeBackground"));
+export default function App() {
+  const active = useActiveSection();
+  const { theme, toggleTheme } = useTheme();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
 
-/**
- * Mount the aurora only once the browser is idle: the 100+ kB Three.js
- * chunk and WebGL context creation otherwise compete with hydration and
- * first interaction. Also stays false during prerender, so the static
- * HTML never references the canvas.
- */
-function useMountWhenIdle() {
-  const [ready, setReady] = useState(false);
+  useReveal(rootRef);
 
+  useHotkey(
+    "mod+k",
+    useCallback((e: KeyboardEvent) => {
+      e.preventDefault();
+      setMenuOpen((open) => !open);
+    }, [])
+  );
+
+  // Tells the inline safety script in index.html that hydration succeeded.
   useEffect(() => {
-    const start = () => setReady(true);
-    if (typeof window.requestIdleCallback === "function") {
-      const id = window.requestIdleCallback(start, { timeout: 2500 });
-      return () => window.cancelIdleCallback(id);
-    }
-    const id = window.setTimeout(start, 1200);
-    return () => window.clearTimeout(id);
+    document.documentElement.dataset.hydrated = "1";
   }, []);
 
-  return ready;
-}
-
-function App() {
-  const activeSection = useActiveSection("about");
-  const { theme, toggleTheme } = useTheme();
-  const backgroundReady = useMountWhenIdle();
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (!element) return;
-
-    const headerOffset = 80;
-    const elementPosition = element.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.scrollY - headerOffset;
-
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: "smooth",
-    });
-  };
+  const openMenu = useCallback(() => setMenuOpen(true), []);
+  const closeMenu = useCallback(() => setMenuOpen(false), []);
 
   return (
-    <div className="min-h-screen font-sans relative bg-formal-50 text-formal-900 selection:bg-formal-900 selection:text-white dark:bg-formal-900 dark:text-formal-50 dark:selection:bg-formal-50 dark:selection:text-formal-900 transition-colors duration-500">
-      {backgroundReady && (
-        <Suspense fallback={null}>
-          <ThreeBackground theme={theme} />
-        </Suspense>
-      )}
-      <ScrollProgress />
-      <Header
-        activeSection={activeSection}
-        scrollToSection={scrollToSection}
-        theme={theme}
-        toggleTheme={toggleTheme}
-      />
-      <main id="main" className="relative z-[2]">
-        <About scrollToSection={scrollToSection} />
-        <Experience />
-        <Education />
-        <Skills />
-        <Projects />
+    <div ref={rootRef}>
+      <a href="#main" className="skip-link">
+        Skip to content
+      </a>
+      <Atmosphere activeSection={active} />
+      <TopBar theme={theme} onToggleTheme={toggleTheme} onOpenMenu={openMenu} />
+      <Rail active={active} />
+      <main id="main" className="page">
+        <Hero />
+        <Work />
+        <Capabilities />
+        <Track />
+        <Approach />
         <Contact />
       </main>
+      <Footer />
+      <Dock active={active} />
+      <Greeter />
+      <CommandMenu open={menuOpen} onClose={closeMenu} onToggleTheme={toggleTheme} />
     </div>
   );
 }
-
-export default App;

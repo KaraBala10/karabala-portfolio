@@ -1,0 +1,134 @@
+/* ==========================================================================
+   Design tokens — the single source of truth for the visual system.
+   Everything else (components, sections, WebGL colours) reads from here.
+   ========================================================================== */
+
+:root {
+  /* ---- Colour: "graphite & ivory, one signal accent" (dark, default) ---- */
+  --c-bg: #0b0b0d;
+  --c-bg-elev: #111114;
+  --c-surface: #17171b;
+  --c-surface-2: #1e1e23;
+  --c-fg: #ece8e0;
+  --c-fg-muted: #a7a39a;
+  --c-fg-faint: #6f6b64;
+  --c-line: rgba(236, 232, 224, 0.1);
+  --c-line-strong: rgba(236, 232, 224, 0.22);
+  --c-accent: #ff7a2f;
+  --c-accent-text: #ffa061; /* accent tuned for AA on --c-bg */
+  --c-accent-on: #140903; /* text placed on an accent fill */
+  --c-accent-soft: rgba(255, 122, 47, 0.14);
+  --c-glow: rgba(255, 122, 47, 0.16);
+  --c-focus: #ffb37a;
+  --c-selection: rgba(255, 122, 47, 0.35);
+
+  /* WebGL reads these as plain RGB triplets */
+  --gl-line: 236 232 224;
+  --gl-node: 236 232 224;
+  --gl-packet: 255 138 66;
+
+  color-scheme: dark;
+
+  /* ---- Typography ---- */
+  --font-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Fluid type scale (min at 360px, max at 1440px) */
+  --text-xs: 0.6875rem;                                  /* 11px mono labels */
+  --text-sm: 0.8125rem;                                  /* 13px */
+  --text-base: clamp(1rem, 0.94rem + 0.25vw, 1.125rem);  /* 16 → 18 */
+  --text-lg: clamp(1.125rem, 1.02rem + 0.45vw, 1.375rem);/* 18 → 22 */
+  --text-xl: clamp(1.375rem, 1.15rem + 1vw, 2rem);       /* 22 → 32 */
+  --text-2xl: clamp(1.875rem, 1.4rem + 2vw, 3rem);       /* 30 → 48 */
+  --text-3xl: clamp(2.5rem, 1.7rem + 3.6vw, 4.75rem);    /* 40 → 76 */
+  --text-display: clamp(3.25rem, 1.5rem + 8.5vw, 9.5rem);/* 52 → 152 */
+
+  --leading-tight: 0.95;
+  --leading-snug: 1.15;
+  --leading-normal: 1.55;
+  --leading-relaxed: 1.7;
+  --tracking-tight: -0.03em;
+  --tracking-mono: 0.08em;
+
+  /* ---- Spacing (4px base) ---- */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.25rem;
+  --s-6: 1.5rem;
+  --s-8: 2rem;
+  --s-10: 2.5rem;
+  --s-12: 3rem;
+  --s-16: 4rem;
+  --s-20: 5rem;
+  --s-24: 6rem;
+  --s-32: 8rem;
+  --section-gap: clamp(5.5rem, 12vh, 10rem);
+  --gutter: clamp(1rem, 2vw, 1.75rem);
+  --page-pad: clamp(1.25rem, 4.5vw, 4.5rem);
+  --page-max: 1440px;
+  --rail-w: 4.5rem; /* desktop left navigation rail */
+
+  /* ---- Shape ---- */
+  --r-xs: 3px;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --r-pill: 999px;
+
+  /* ---- Elevation (used sparingly; the system leans on rules, not shadows) ---- */
+  --shadow-float: 0 12px 40px -12px rgba(0, 0, 0, 0.55), 0 1px 0 rgba(255, 255, 255, 0.04) inset;
+  --shadow-plate: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 0 0 1px var(--c-line);
+
+  /* ---- Motion ---- */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --dur-fast: 160ms;
+  --dur: 320ms;
+  --dur-slow: 720ms;
+  --dur-reveal: 900ms;
+
+  /* ---- Layers ---- */
+  --z-atmosphere: 0;
+  --z-content: 1;
+  --z-chrome: 40;
+  --z-dock: 50;
+  --z-overlay: 60;
+
+  /* Breakpoints (documentation only — CSS cannot read vars in media queries):
+     sm 640px · md 768px · lg 1024px · xl 1280px · 2xl 1600px */
+}
+
+/* ---- Paper theme ---- */
+:root[data-theme="light"] {
+  --c-bg: #f3f0e9;
+  --c-bg-elev: #ebe8e0;
+  --c-surface: #faf9f5;
+  --c-surface-2: #ffffff;
+  --c-fg: #151412;
+  --c-fg-muted: #5e5a53;
+  --c-fg-faint: #8f8a81;
+  --c-line: rgba(21, 20, 18, 0.12);
+  --c-line-strong: rgba(21, 20, 18, 0.26);
+  --c-accent: #e85d04;
+  --c-accent-text: #b64600;
+  --c-accent-on: #fff7f0;
+  --c-accent-soft: rgba(232, 93, 4, 0.12);
+  --c-glow: rgba(232, 93, 4, 0.14);
+  --c-focus: #b64600;
+  --c-selection: rgba(232, 93, 4, 0.25);
+  --gl-line: 21 20 18;
+  --gl-node: 21 20 18;
+  --gl-packet: 232 93 4;
+  --shadow-float: 0 12px 40px -12px rgba(30, 20, 10, 0.25), 0 1px 0 rgba(255, 255, 255, 0.6) inset;
+  --shadow-plate: 0 1px 0 rgba(255, 255, 255, 0.5) inset, 0 0 0 1px var(--c-line);
+  color-scheme: light;
+}
+
+/* Registered custom properties so the atmosphere can *transition* between
+   sections instead of jumping. Browsers without @property simply snap. */
+@property --atmo-x { syntax: "<number>"; inherits: true; initial-value: 70; }
+@property --atmo-y { syntax: "<number>"; inherits: true; initial-value: 20; }
