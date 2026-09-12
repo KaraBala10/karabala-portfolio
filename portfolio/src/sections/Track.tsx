@@ -36,7 +36,7 @@ export function Track() {
                   <span className={`${styles.marker} ${isCurrent ? styles.markerLive : ""}`} aria-hidden />
                   <span className={`mono ${styles.range}`}>{formatRange(e.start, e.end)}</span>
                   <span className={`mono ${styles.duration}`} suppressHydrationWarning>
-                    {formatDuration(months)}
+                    {formatDuration(months, isCurrent)}
                   </span>
                   <span className={`mono ${styles.badge}`}>{engagementLabel[e.engagement]}</span>
                 </div>
@@ -64,7 +64,7 @@ export function Track() {
               <div>
                 <dt>Years shipping</dt>
                 <dd className="display" suppressHydrationWarning>
-                  {years}+
+                  {years}
                 </dd>
               </div>
               <div>

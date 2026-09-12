@@ -143,7 +143,7 @@ export function Hero() {
           <div className={styles.statusItem}>
             <dt className="sr-only">Experience</dt>
             <dd>
-              <span suppressHydrationWarning>{years}+</span> years shipping
+              <span suppressHydrationWarning>{years}</span> years shipping
             </dd>
           </div>
           <div className={styles.statusItem}>

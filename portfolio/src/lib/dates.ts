@@ -18,7 +18,15 @@ export function monthsBetween(startIso: string, endIso: string | null, now: Date
   return Math.max(0, (b.y - a.y) * 12 + (b.m - a.m));
 }
 
-export function formatDuration(months: number): string {
+/**
+ * Durations count the year currently in progress: an engagement running since
+ * Sep 2022 reads as five years during 2026, not four. Finished entries stay
+ * exact, and an ongoing one under a year still reports its months.
+ */
+export function formatDuration(months: number, inProgress = false): string {
+  if (inProgress && months >= 12) {
+    return `${Math.floor(months / 12) + 1} yrs`;
+  }
   const y = Math.floor(months / 12);
   const m = months % 12;
   const parts: string[] = [];
@@ -31,7 +39,9 @@ export function formatRange(startIso: string, endIso: string | null): string {
   return `${formatMonth(startIso)} — ${endIso ? formatMonth(endIso) : "Present"}`;
 }
 
-/** Whole years of experience since the earliest start month. */
+/** Years of experience since the earliest start month, counting the year in progress. */
 export function yearsSince(startIso: string, now: Date): number {
-  return Math.floor(monthsBetween(startIso, null, now) / 12);
+  const months = monthsBetween(startIso, null, now);
+  const whole = Math.floor(months / 12);
+  return months < 12 ? whole : whole + 1;
 }
