@@ -27,6 +27,7 @@ export default function LatticeCanvas({ className }: LatticeCanvasProps) {
     if (!canvas) return;
 
     let lattice: Lattice;
+    canvas.hidden = false;
     try {
       lattice = new Lattice(canvas, { tier: getQualityTier(), colors: readColors() });
     } catch {

@@ -98,13 +98,13 @@
 /* ---- Visual composition: portrait plate over the lattice ---- */
 .visual {
   position: relative;
-  width: min(100%, 26rem);
+  width: min(100%, 16rem);
   aspect-ratio: 4 / 5;
   margin-inline: 0 auto;
 }
 @media (min-width: 1024px) {
   .visual {
-    width: min(100%, 30rem);
+    width: min(100%, 19rem);
     margin-inline: auto 0;
   }
 }
@@ -112,10 +112,10 @@
 .orbit {
   position: absolute;
   z-index: 0;
-  width: 118%;
+  width: 178%;
   aspect-ratio: 1;
-  left: -38%;
-  top: -14%;
+  left: -64%;
+  top: -30%;
   pointer-events: none;
 }
 .orbitFallback {
@@ -140,6 +140,11 @@
   opacity: 0;
   transition: opacity 1.2s var(--ease-out);
 }
+/* The class sets display, so it would otherwise beat the UA rule for [hidden]
+   and leave a dead canvas in the layout when WebGL is unavailable. */
+.lattice[hidden] {
+  display: none;
+}
 .lattice:global(.is-ready) {
   opacity: 1;
 }
@@ -162,11 +167,11 @@
   inset: 0;
   border: 1px solid var(--c-line-strong);
   border-radius: var(--r-xs);
-  transform: translate(-14px, 14px);
+  transform: translate(-10px, 10px);
   transition: transform var(--dur-slow) var(--ease-out);
 }
 .plate:hover .outline {
-  transform: translate(-18px, 18px);
+  transform: translate(-13px, 13px);
 }
 .frame {
   position: absolute;
@@ -182,9 +187,10 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(0.88) contrast(1.04);
-  mask-image: linear-gradient(to bottom, black 72%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 72%, transparent 100%);
+  opacity: 0.82;
+  filter: saturate(0.72) contrast(1.02) brightness(0.94);
+  mask-image: linear-gradient(to bottom, black 58%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 58%, transparent 100%);
   background: var(--c-surface-2) url("/portrait/portrait-lqip.jpg") center / cover no-repeat;
 }
 .frame::after {
@@ -203,7 +209,8 @@
 :root[data-theme="light"] .frame img {
   mask-image: none;
   -webkit-mask-image: none;
-  filter: saturate(0.95) contrast(1.02);
+  opacity: 0.92;
+  filter: saturate(0.88) contrast(1.02);
 }
 :root[data-theme="light"] .frame::after {
   display: none;
@@ -260,10 +267,11 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -2rem;
+  bottom: -1.75rem;
   display: flex;
   justify-content: space-between;
-  gap: var(--s-3);
+  gap: var(--s-2);
+  font-size: var(--text-xs);
   color: var(--c-fg-faint);
 }
 
