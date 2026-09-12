@@ -15,7 +15,8 @@ import styles from "./Hero.module.css";
 
 const LatticeCanvas = lazy(() => import("../gl/LatticeCanvas"));
 
-const PORTRAIT_SIZES = "(min-width: 1024px) 34vw, (min-width: 640px) 55vw, 80vw";
+// Matches the plate in Hero.module.css: 19rem from 1024px up, 16rem below.
+const PORTRAIT_SIZES = "(min-width: 1024px) 304px, 256px";
 const widths = [400, 640, 900, 1024];
 const srcSet = (ext: "webp" | "jpg") => widths.map((w) => `/portrait/portrait-${w}.${ext} ${w}w`).join(", ");
 

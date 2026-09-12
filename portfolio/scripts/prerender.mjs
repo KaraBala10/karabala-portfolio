@@ -21,11 +21,23 @@ writeFileSync(
   template.replace(marker, `<div id="root">${appHtml}</div>`)
 );
 
+// `lastmod` is a promise to crawlers about freshness; stamping it at build time
+// keeps it honest without anyone remembering to edit the file.
+const sitemapPath = resolve(root, "dist/sitemap.xml");
+const today = new Date().toISOString().slice(0, 10);
+writeFileSync(
+  sitemapPath,
+  readFileSync(sitemapPath, "utf-8").replace(
+    /<lastmod>[^<]*<\/lastmod>/,
+    `<lastmod>${today}</lastmod>`
+  )
+);
+
 // The SSR bundle is only needed at build time.
 rmSync(resolve(root, "dist-ssr"), { recursive: true, force: true });
 
 console.log(
   `Prerendered app markup injected into dist/index.html (${(
     appHtml.length / 1024
-  ).toFixed(1)} kB of HTML)`
+  ).toFixed(1)} kB of HTML); sitemap lastmod set to ${today}`
 );
