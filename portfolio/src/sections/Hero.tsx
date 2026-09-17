@@ -52,7 +52,7 @@ export function Hero() {
           </p>
 
           <h1 id="hero-name" className={`display ${styles.name}`} data-reveal style={i(1)}>
-            <span className={styles.first}>{profile.firstName}</span>
+            <span className={styles.first}>{profile.firstName}</span>{" "}
             <span className={styles.last}>{profile.lastName}</span>
           </h1>
 
